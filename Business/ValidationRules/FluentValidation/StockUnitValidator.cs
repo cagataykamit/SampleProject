@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class StockValidator : AbstractValidator<Stock>
+    public class StockUnitValidator : AbstractValidator<StockUnit>
     {
-        public StockValidator()
+        public StockUnitValidator()
         {
             //RuleFor(p => p.SalePrice).Min(2);
             //RuleFor(p => p.Name).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalıdır.");

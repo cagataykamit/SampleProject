@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IStockService
+    public interface IStockUnitService
     {
-        IDataResult<List<Stock>> GetAll();
-        IResult Add(Stock stock);
-        IResult Update(Stock stock);
+        IDataResult<List<StockUnit>> GetAll();
+        IResult Add(StockUnit stockUnit);
+        IResult Update(StockUnit stockUnit);
         IDataResult<List<StockSelectListDto>> GetAllStocksByStockType(int idStockType);
     }
 }

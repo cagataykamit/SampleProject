@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IStockOperationService
+    public interface IStockListService
     {
-        IDataResult<List<StockOperationDto>> GetAll();
-        IResult Add(StockOperation stockOperation);
-        IResult Update(StockOperation stockOperation);
+        IDataResult<List<StockListDto>> GetAll();
+        IResult Add(StockList stockList);
+        IResult Update(StockList StockList);
     }
 }

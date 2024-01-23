@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace DataAccess.Entities;
+namespace Entities.Concrete;
 
-public partial class StockList
+public partial class StockList : IEntity
 {
     public int Id { get; set; }
 
@@ -24,4 +25,5 @@ public partial class StockList
     public virtual Shelf IdShelfNavigation { get; set; } = null!;
 
     public virtual StockUnit IdStockUnitNavigation { get; set; } = null!;
+
 }

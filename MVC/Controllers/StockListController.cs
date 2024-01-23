@@ -8,22 +8,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
 {
-    public class StockOperationController : Controller
+    public class StockListController : Controller
     {
-        IStockOperationService _StockOperationService;
-        IStockService _stockService;
+        IStockListService _stockListService;
+        IStockUnitService _stockService;
 
-        public StockOperationController(IStockOperationService StockOperationService, IStockService stockService)
+        public StockListController(IStockListService StockListService, IStockUnitService stockService)
         {
-            _StockOperationService = StockOperationService;
+            _stockListService = StockListService;
             _stockService = stockService;
         }
 
-        [HttpGet("StockOperation/getall")]
+        [HttpGet("StockList/getall")]
         public IActionResult GetAll()
         {
 
-            var result = _StockOperationService.GetAll();
+            var result = _stockListService.GetAll();
             if (result.Success)
             {
                 //return Ok(result);
@@ -36,7 +36,7 @@ namespace MVC.Controllers
 
         }
 
-        [HttpGet("StockOperation/getallstocksbystocktype")]
+        [HttpGet("StockList/getallstocksbystocktype")]
         public IActionResult GetAll(int idStockType)
         {
 
@@ -61,9 +61,9 @@ namespace MVC.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(StockOperation StockOperation)
+        public IActionResult Add(StockList StockList)
         {
-            var result = _StockOperationService.Add(StockOperation);
+            var result = _stockListService.Add(StockList);
             if (result.Success)
             {
                 return Ok(result);
@@ -77,7 +77,7 @@ namespace MVC.Controllers
         //[HttpGet("getbyid")]
         //public IActionResult GetById(int id)
         //{
-        //    var result = _StockOperationService.GetById(id);
+        //    var result = _StockListService.GetById(id);
         //    if (result.Success)
         //    {
         //        return Ok(result);

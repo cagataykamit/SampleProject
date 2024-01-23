@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IStockDal : IEntityRepository<Stock>
+    public interface IStockUnitDal : IEntityRepository<StockUnit>
     {
         List<StockSelectListDto> GetAllStocksByStockType(int idStockType);
     }

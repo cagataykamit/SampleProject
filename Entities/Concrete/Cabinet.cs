@@ -17,6 +17,6 @@ public partial class Cabinet : IEntity
 
     public virtual Shelf? IdShelfNavigation { get; set; }
 
-    public virtual ICollection<StockOperation> StockOperations { get; set; } = new List<StockOperation>();
+    public virtual ICollection<StockList> StockLists { get; set; } = new List<StockList>();
 
 }

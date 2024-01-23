@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfStockDal : EfEntityRepositoryBase<Stock, StockContext>, IStockDal
+    public class EfStockUnitDal : EfEntityRepositoryBase<StockUnit, StockContext>, IStockUnitDal
     {
         public List<StockSelectListDto> GetAllStocksByStockType(int idStockType)
         {
             using (StockContext context = new StockContext())
             {
-                var result = from s in context.Stocks
+                var result = from s in context.StockUnits
                              where s.IdStockType == idStockType && s.Deleted == false
                              select new StockSelectListDto
                              {

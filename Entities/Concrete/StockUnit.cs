@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace DataAccess.Entities;
+namespace Entities.Concrete;
 
-public partial class StockUnit
+public partial class StockUnit : IEntity
 {
     public int Id { get; set; }
 
@@ -14,8 +15,6 @@ public partial class StockUnit
     public int IdQuantityUnit { get; set; }
 
     public string? Description { get; set; }
-
-    public int IdAmountType { get; set; }
 
     public decimal? PurchasePrice { get; set; }
 
@@ -28,8 +27,6 @@ public partial class StockUnit
     public decimal? Weight { get; set; }
 
     public bool Deleted { get; set; }
-
-    public virtual AmountType IdAmountTypeNavigation { get; set; } = null!;
 
     public virtual CurrencyType? IdCurrencyTypePurchaseNavigation { get; set; }
 

@@ -11,9 +11,11 @@ public partial class CurrencyType : IEntity
 
     public string Name { get; set; } = null!;
 
+    public string? Symbol { get; set; }
+
     public bool Deleted { get; set; }
 
-    public virtual ICollection<Stock> StockIdCurrencyTypePurchaseNavigations { get; set; } = new List<Stock>();
+    public virtual ICollection<StockUnit> StockUnitIdCurrencyTypePurchaseNavigations { get; set; } = new List<StockUnit>();
 
-    public virtual ICollection<Stock> StockIdCurrencyTypeSaleNavigations { get; set; } = new List<Stock>();
+    public virtual ICollection<StockUnit> StockUnitIdCurrencyTypeSaleNavigations { get; set; } = new List<StockUnit>();
 }

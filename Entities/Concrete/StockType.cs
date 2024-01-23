@@ -14,5 +14,5 @@ public partial class StockType : IEntity
 
     public bool Deleted { get; set; }
 
-    public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
+    public virtual ICollection<StockUnit> StockUnits { get; set; } = new List<StockUnit>();
 }

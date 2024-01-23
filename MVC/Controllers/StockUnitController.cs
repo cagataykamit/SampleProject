@@ -6,20 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MVC.Controllers
 {
-    public class StockController : Controller
+    public class StockUnitController : Controller
     {
-        IStockService _StockService;
+        IStockUnitService _stockUnitService;
 
-        public StockController(IStockService StockService)
+        public StockUnitController(IStockUnitService stockUnitService)
         {
-            _StockService = StockService;
+            _stockUnitService = stockUnitService;
         }
 
-        [HttpGet("Stock/getall")]
+        [HttpGet("StockUnit/getall")]
         public IActionResult GetAll()
         {
 
-            var result = _StockService.GetAll();
+            var result = _stockUnitService.GetAll();
             if (result.Success)
             {
                 //return Ok(result);
@@ -40,9 +40,9 @@ namespace MVC.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Stock Stock)
+        public IActionResult Add(StockUnit stockUnit)
         {
-            var result = _StockService.Add(Stock);
+            var result = _stockUnitService.Add(stockUnit);
             if (result.Success)
             {
                 return Ok(result);

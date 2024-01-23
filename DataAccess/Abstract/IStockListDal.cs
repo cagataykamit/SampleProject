@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IStockOperationDal : IEntityRepository<StockOperation>
+    public interface IStockListDal : IEntityRepository<StockList>
     {
-        List<StockOperationDto> GetAllForTable();
+        List<StockListDto> GetAllForTable();
     }
 }

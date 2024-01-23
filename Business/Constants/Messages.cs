@@ -21,10 +21,10 @@ namespace Business.Constants
         public static string StockUpdated = "Stok başarıyla güncellendi";
 
 
-        public static string StockOperationAdded = "Stok başarıyla eklendi";
-        public static string StockOperationDeleted = "Stok başarıyla silindi";
-        public static string StockOperationUpdated = "Stok başarıyla güncellendi";
-        public static string StockOperationTypeListed = "Stok operasyonları listelendi.";
+        public static string StockListAdded = "Stok başarıyla eklendi";
+        public static string StockListDeleted = "Stok başarıyla silindi";
+        public static string StockListUpdated = "Stok başarıyla güncellendi";
+        public static string StockListTypeListed = "Stok operasyonları listelendi.";
         
 
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
