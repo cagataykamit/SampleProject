@@ -8,7 +8,25 @@ namespace Business.Constants
 {
     public  static class Messages
     {
-        public static string ProductAdded = "Ürün eklendi";
+        public static string ProductAdded = "Ürün başarıyla eklendi";
+        public static string ProductDeleted = "Ürün başarıyla silindi";
+        public static string ProductUpdated = "Ürün başarıyla güncellendi";
+
+        public static string StockTypeAdded = "Stok tipi başarıyla eklendi";
+        public static string StockTypeDeleted = "Stok tipi başarıyla silindi";
+        public static string StockTypeUpdated = "Stok tipi başarıyla güncellendi";
+
+        public static string StockAdded = "Stok başarıyla eklendi";
+        public static string StockDeleted = "Stok başarıyla silindi";
+        public static string StockUpdated = "Stok başarıyla güncellendi";
+
+
+        public static string StockOperationAdded = "Stok başarıyla eklendi";
+        public static string StockOperationDeleted = "Stok başarıyla silindi";
+        public static string StockOperationUpdated = "Stok başarıyla güncellendi";
+        public static string StockOperationTypeListed = "Stok operasyonları listelendi.";
+        
+
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
         public static string MaintenanceTime = "Sistem bakımda";
         public static string ProductListed = "Ürünler listelendi.";

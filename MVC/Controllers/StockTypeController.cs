@@ -22,13 +22,21 @@ namespace MVC.Controllers
             var result = _stockTypeService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                //return Ok(result);
+                return View(result.Data);
             }
             else
             {
                 return BadRequest(result);
             }
 
+        }
+
+
+        [HttpGet("stocktype/add")]
+        public IActionResult Add()
+        {
+            return View();
         }
 
         [HttpPost("add")]
@@ -44,6 +52,17 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
+
+        //[HttpGet("getbyid")]
+        //public IActionResult GetById(int id)
+        //{
+        //    var result = _stockTypeService.GetById(id);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
     }
 }

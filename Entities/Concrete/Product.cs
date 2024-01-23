@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
-{
+namespace Entities.Concrete;
     public class Product:IEntity
     {
         public int ProductId { get; set; }
@@ -15,5 +14,5 @@ namespace Entities.Concrete
         public string ProductName { get; set; }
         public short UnitsInStock { get; set; }
         public decimal UnitPrice { get; set; }
+        public bool Deleted {  get; set; }
     }
-}

@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +13,10 @@ public partial class Cabinet : IEntity
 
     public int? IdShelf { get; set; }
 
-    public bool? Deleted { get; set; }
+    public bool Deleted { get; set; }
 
     public virtual Shelf? IdShelfNavigation { get; set; }
+
+    public virtual ICollection<StockOperation> StockOperations { get; set; } = new List<StockOperation>();
+
 }

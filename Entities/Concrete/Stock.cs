@@ -26,7 +26,7 @@ public partial class Stock : IEntity
 
     public decimal? Weight { get; set; }
 
-    public bool? Deleted { get; set; }
+    public bool Deleted { get; set; }
 
     public virtual AmountType IdAmountTypeNavigation { get; set; } = null!;
 
@@ -35,4 +35,6 @@ public partial class Stock : IEntity
     public virtual CurrencyType? IdCurrencyTypeSaleNavigation { get; set; }
 
     public virtual StockType IdStockTypeNavigation { get; set; } = null!;
+
+    public virtual ICollection<StockOperation> StockOperations { get; set; } = new List<StockOperation>();
 }

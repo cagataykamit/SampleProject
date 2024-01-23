@@ -8,5 +8,6 @@ namespace Core.Entities
 {
     public interface IEntity
     {
+        public bool Deleted { get;set; }
     }
 }

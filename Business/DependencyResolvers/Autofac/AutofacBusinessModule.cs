@@ -25,6 +25,12 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<StockTypeManager>().As<IStockTypeService>().SingleInstance();
             builder.RegisterType<EfStockTypeDal>().As<IStockTypeDal>().SingleInstance();
 
+            builder.RegisterType<StockManager>().As<IStockService>().SingleInstance();
+            builder.RegisterType<EfStockDal>().As<IStockDal>().SingleInstance();
+
+            builder.RegisterType<StockOperationManager>().As<IStockOperationService>().SingleInstance();
+            builder.RegisterType<EfStockOperationDal>().As<IStockOperationDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

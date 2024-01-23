@@ -1,6 +1,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using Business.DependencyResolvers.Autofac;
+using Autofac.Core;
 
 namespace MVC
 {
@@ -12,6 +13,9 @@ namespace MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddMvc();
+
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
             #region ForAutofac
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
@@ -19,12 +23,15 @@ namespace MVC
             {
                 builder.RegisterModule(new AutofacBusinessModule());
             });
+
+
             //Or 
             //builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(options =>
             //options.RegisterModule(new AutofacBusinessModule())));
             #endregion ForAutofac
 
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

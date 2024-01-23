@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Entities.Concrete;
 
-public  class StockType :IEntity
+public partial class StockType : IEntity
 {
     public int Id { get; set; }
 
@@ -12,7 +12,7 @@ public  class StockType :IEntity
 
     public bool IsActive { get; set; }
 
-    public bool? Deleted { get; set; }
+    public bool Deleted { get; set; }
 
     public virtual ICollection<Stock> Stocks { get; set; } = new List<Stock>();
 }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Concrete.EntityFramework;
+namespace DataAccess.EntityFramework;
 
 public partial class StockContext : DbContext
 {
@@ -27,6 +28,8 @@ public partial class StockContext : DbContext
     public virtual DbSet<Stock> Stocks { get; set; }
 
     public virtual DbSet<StockType> StockTypes { get; set; }
+
+    public virtual DbSet<StockOperation> StockOperations { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -94,6 +97,24 @@ public partial class StockContext : DbContext
                 .HasForeignKey(d => d.IdStockType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Stock_StockType");
+        });
+
+        modelBuilder.Entity<StockOperation>(entity =>
+        {
+            entity.HasOne(d => d.IdCabinetNavigation).WithMany(p => p.StockOperations)
+                .HasForeignKey(d => d.IdCabinet)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StockOperations_Cabinets");
+
+            entity.HasOne(d => d.IdShelfNavigation).WithMany(p => p.StockOperations)
+                .HasForeignKey(d => d.IdShelf)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StockOperations_Shelfs");
+
+            entity.HasOne(d => d.IdStockNavigation).WithMany(p => p.StockOperations)
+                .HasForeignKey(d => d.IdStock)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StockOperations_Stocks");
         });
 
         modelBuilder.Entity<StockType>(entity =>

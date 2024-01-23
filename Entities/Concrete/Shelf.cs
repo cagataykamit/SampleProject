@@ -10,7 +10,9 @@ public partial class Shelf : IEntity
 
     public string? Code { get; set; }
 
-    public bool? Deleted { get; set; }
+    public bool Deleted { get; set; }
 
     public virtual ICollection<Cabinet> Cabinets { get; set; } = new List<Cabinet>();
+
+    public virtual ICollection<StockOperation> StockOperations { get; set; } = new List<StockOperation>();
 }

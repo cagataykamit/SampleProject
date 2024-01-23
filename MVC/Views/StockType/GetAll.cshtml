@@ -1,17 +1,17 @@
-﻿@using Entities.Concrete
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Entities.Concrete
 @model List<Entities.Concrete.StockType>
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-@{
-    Layout = null;
-}
 <table class="table table-hover">
     <tr>
         <th>Id</th>
         <th>Stok Türü</th>
         <th>Durum</th>
-
+        <th>İşlemler</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -22,3 +22,4 @@
         </tr>
     }
 </table>
+<a href="/StockType/Add" class="btn btn-info">Yeni Stock Tipi</a>

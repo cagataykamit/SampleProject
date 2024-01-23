@@ -1,7 +1,9 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -29,7 +31,7 @@ namespace Business.Concrete
         }
 
 
-
+        [LogAspect(typeof(FileLogger))]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -79,12 +81,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
-
-        [ValidationAspect(typeof(ProductValidator))]
-        public IResult Update(Product product)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
@@ -104,6 +101,19 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ProductNameAlreadyExist);
             }
             return new SuccessResult();
+        }
+
+        public IResult Delete(Product product)
+        {
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
+        }
+
+        public IResult Update(Product product)
+        {
+
+            _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }

@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Entities.Concrete
+@model List<Entities.Concrete.Stock>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Birim Kodu</th>
+        <th>Stok Türü</th>
+        <th>Tür</th>
+        <th>Açıklama</th>
+        <th>Alış Fiyatı</th>
+        <th>Satış Fiyatı</th>
+        <th>Kağıt Ağırlığı Fiyatı</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.StockCode</td>
+            <td>@item.IdStockType</td>
+            <td>@item.</td>
+            <td>@item.Description</td>
+            <td>@item.</td>
+            <td>@item.</td>
+            <td>@item.+</td>
+        </tr>
+    }
+</table>
+<a href="/StockType/Add" class="btn btn-info">Yeni Stock Tipi</a>

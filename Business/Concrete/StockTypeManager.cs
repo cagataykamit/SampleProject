@@ -33,16 +33,13 @@ namespace Business.Concrete
         public IResult Add(StockType stockType)
         {
             //business codes
-
-
-            IResult result = BusinessRules.Run(CheckIfStockTypeNameExist(stockType.Name)
-                                          
-                                          );
+            IResult result = BusinessRules.Run(CheckIfStockTypeNameExist(stockType.Name));
 
             if (result != null)
             {
                 return result;
             }
+            stockType.Deleted = false;
             _stockTypeDal.Add(stockType);
 
             return new SuccessResult(Messages.ProductAdded);
@@ -57,9 +54,25 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult Delete(StockType stockType)
+        {
+
+            var objStockType = _stockTypeDal.Get(x => x.Id == stockType.Id);
+ 
+            _stockTypeDal.Delete(stockType);
+            return new SuccessResult(Messages.StockTypeDeleted);
+        }
+
         public IResult Update(StockType stockType)
         {
-            throw new NotImplementedException();
+
+            var objStockType = _stockTypeDal.Get(x=>x.Id == stockType.Id);
+
+            objStockType.Name = stockType.Name;
+            objStockType.IsActive = stockType.IsActive;
+
+            _stockTypeDal.Update(stockType);
+            return new SuccessResult(Messages.StockTypeUpdated);
         }
     }
 }

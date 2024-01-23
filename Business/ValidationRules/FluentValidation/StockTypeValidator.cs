@@ -12,14 +12,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public StockTypeValidator()
         {
-            RuleFor(p => p.Name).MinimumLength(2);
-            RuleFor(p => p.Name).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalıdır.");
+            RuleFor(p => p.Name).MinimumLength(2);          
         }
 
-        private bool StartWithA(string arg)
-        {
-            return arg.StartsWith("A");
-
-        }
     }
 }
