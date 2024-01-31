@@ -2,7 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.EntityFramework;
 using Entities.Concrete;
-using Entities.DTOs;
+using Entities.DTOs.StockList;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

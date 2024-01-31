@@ -1,5 +1,54 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using Entities.Concrete;
+@model List<StockList>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Türleri
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Table Basic</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Durum</th>
+                        <th>SİLİNDİ Mİ?</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Durum</th>
+                        <th>SİLİNDİ Mİ?</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var stockList in Model)
+                    {
+                        <tr name=@stockList.Id>
+                            <th>@stockList.IdStockUnit</th>
+                            <th>@stockList.IdCabinet</th>
+                            <th>@(stockList.Deleted ? "Evet" : "Hayır")</th>
+                            <td> as</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+            <button type="button" class="btn btn-primary">Ekle</button>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>
+
+@section Scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
 }

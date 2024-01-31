@@ -19,31 +19,7 @@
     <h1>Stok Birimi Ekle</h1>
     <br />
     <form class="form-group" method="post">
-        <div>
-            <label>Stok Birim Kodu</label>
-            <input type="text" class="form-control" name="Ad" placeholder="Stok Birim Kodu" />
-        </div>
-        <div>
-            <label>Stok Türü</label>
-            <input type="text" class="form-control" name="Ad" />
-        </div>
-        <div>
-            <label>Miktar Birimi</label>
-            <input type="text" class="form-control" name="Ad" />
-        </div>
-
-        <form action="/action_page.php">
-            <label for="cars">Choose a car:</label>
-            <select name="cars" id="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
-
-        </form>
-
-
+       
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Ekle</button>
         <div class="modal" id="Modal1">
             <div class="modal-dialog"></div>
@@ -53,20 +29,12 @@
                 </div>
                 <form>
                     <div class="modal-body">
-                        <label>Ürün Adı</label>
-                        <input type="text" name="Urun" class="form-control"/>
+                        <label>Stok Türü</label>
+                        <input type="text" name="StockType" class="form-control"/>
+                        <button class="btn btn-dark">Ekle</button>
+                        <button class="btn btn-dark">İptal</button>
                         <br />
-                        <label>Ürün Markası</label>
-                        <input type="text" name="marka" class="form-control" 
-                        <br />
-                        <br />
-                        <label>Ad Soyad</label>
-                        <input type="text" name="adsoyad" class="form-control" />
-                        <br />
-                        <label>Telefon</label>
-                        <input type="text" name="telefon" class="form-control" />
-                        <br />
-                        <button class="btn btn-info">Ekle</button>
+                        <
                     </div>
                 </form>
             </div>

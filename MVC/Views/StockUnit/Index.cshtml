@@ -1,0 +1,119 @@
+﻿@using Entities.DTOs.StockUnit;
+
+@model List<StockUnitDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Birimleri
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Table Basic</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Birim Kodu</th>
+                        <th>Stok Türü</th>
+                        <th>Tür</th>
+                        <th>Açıklama</th>
+                        <th>Alış Fiyatı</th>
+                        <th></th>
+                        <th>Satış Fiyatı</th>
+                        <th></th>
+                        <th>Kağıt Ağırlığı Fiyatı</th>
+                        <th>Durum</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Birim Kodu</th>
+                        <th>Stok Türü</th>
+                        <th>Tür</th>
+                        <th>Açıklama</th>
+                        <th>Alış Fiyatı</th>
+                        <th></th>
+                        <th>Satış Fiyatı</th>
+                        <th></th>
+                        <th>Kağıt Ağırlığı Fiyatı</th>
+                        <th>Durum</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        <tr name=@item.Id>
+                            <td>@item.StockCode</td>
+                            <td>@item.Description</td>
+                            <td>@item.IdQuantityUnit</td>
+                            <td>@item.Description</td>
+                            <td>@item.PurchasePrice</td>
+                            <td>@item.IdCurrencyTypePurchase</td>
+                            <td>@item.SalePrice</td>
+                            <td>@item.IdCurrencyTypeSale</td>
+                            <td>@item.Weight</td>
+                            <td>@item.Deleted</td>
+                            <td></td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+            <button type="button" class="btn btn-primary">Ekle</button>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>
+
+@section Scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+}
+@*
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using Entities.Concrete
+@model List<Entities.Concrete.StockUnit>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Birim Kodu</th>
+        <th>Stok Türü</th>
+        <th>Tür</th>
+        <th>Açıklama</th>
+        <th>Alış Fiyatı</th>
+        <th></th>
+        <th>Satış Fiyatı</th>
+        <th></th>
+        <th>Kağıt Ağırlığı Fiyatı</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.StockCode</td>
+            <td>@item.IdStockType</td>
+            <td>@item.IdQuantityUnit</td>
+            <td>@item.Description</td>
+            <td>@item.PurchasePrice</td>
+            <td>@item.IdCurrencyTypePurchase</td>
+            <td>@item.SalePrice</td>
+            <td>@item.IdCurrencyTypeSale</td>
+            <td>@item.Weight</td>
+            <td>@item.Deleted</td>
+            <td></td>
+        </tr>
+    }
+</table>
+<a href="/StockType/Add" class="btn btn-info">Yeni Stock Tipi</a>
+ *@

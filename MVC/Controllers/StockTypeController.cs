@@ -3,6 +3,7 @@ using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -10,20 +11,23 @@ namespace MVC.Controllers
     {
         IStockTypeService _stockTypeService;
 
+
         public StockTypeController(IStockTypeService stockTypeService)
         {
             _stockTypeService = stockTypeService;
         }
 
-        [HttpGet("stocktype/getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
+            var viewModel = new StockTypeViewModel();
+
 
             var result = _stockTypeService.GetAll();
             if (result.Success)
             {
-                //return Ok(result);
-                return View(result.Data);
+                viewModel.LstStock = result.Data;
+                return View(viewModel);
             }
             else
             {
@@ -33,19 +37,20 @@ namespace MVC.Controllers
         }
 
 
-        [HttpGet("stocktype/add")]
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
+            //return PartialView("_StockTypeAddPartial");
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(StockType stockType)
+        [HttpPost]
+        public IActionResult Add(StockType RequestModel)
         {
-            var result = _stockTypeService.Add(stockType);
+            var result = _stockTypeService.Add(RequestModel);
             if (result.Success)
             {
-                return Ok(result);
+                return RedirectToAction("GetAll",new { message = result.Message});
             }
             else
             {

@@ -7,7 +7,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
-using Entities.DTOs;
+using Entities.DTOs.StockList;
 using System;
 using System.Collections.Generic;
 using System.Linq;

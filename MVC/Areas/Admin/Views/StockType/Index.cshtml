@@ -1,0 +1,49 @@
+﻿@using Entities.Concrete;
+@model List<StockType>;
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Makale Yönetimi /</span> Makaleler
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <h5 class="card-header">Table Basic</h5>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Ad</th>
+                        <th>Durum</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Ad</th>
+                        <th>Durum</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var stockType in Model)
+                    {
+                        <tr name=@stockType.Id>
+                            <th>@stockType.Name</th>
+                            <th>@(stockType.Deleted ? "Aktif Değil" : "Aktif")</th>
+                            <td> as</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+</div>
+
+@section Scripts{
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+}
