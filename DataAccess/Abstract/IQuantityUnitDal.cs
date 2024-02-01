@@ -1,5 +1,4 @@
 ﻿using Core.DataAccess;
-using Entities;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,9 +9,8 @@ using System.Web.Mvc;
 
 namespace DataAccess.Abstract
 {
-    public interface IStockTypeDal : IEntityRepository<StockType>
+    public interface IQuantityUnitDal : IEntityRepository<QuantityUnit>
     {
-        List<SelectListItem> GetAllStockTypesSelectList();
-
+        List<SelectListItem> GetAllQuantityUnitSelectList();
     }
 }

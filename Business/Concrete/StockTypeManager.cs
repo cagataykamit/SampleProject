@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Business.Concrete
 {
@@ -74,5 +75,12 @@ namespace Business.Concrete
             _stockTypeDal.Update(stockType);
             return new SuccessResult(Messages.StockTypeUpdated);
         }
+
+        public List<SelectListItem> GetAllStockTypesSelectList()
+        {
+            return _stockTypeDal.GetAllStockTypesSelectList();
+        }
+
+      
     }
 }

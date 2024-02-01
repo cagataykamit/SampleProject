@@ -1,10 +1,12 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
@@ -12,24 +14,60 @@ namespace MVC.Controllers
     {
         IStockUnitService _stockUnitService;
         IStockTypeService _stockTypeService;
-        StockContext c = new StockContext();
+        IQuantityUnitService _quantityUnitService;
+        ICurrencyTypeService _currencyTypeService;
+        
 
-        public StockUnitController(IStockUnitService stockUnitService,IStockTypeService stockTypeService)
+        public StockUnitController(IStockUnitService stockUnitService,IStockTypeService stockTypeService,IQuantityUnitService quantityUnitService, ICurrencyTypeService currencyTypeService)
         {
             _stockUnitService = stockUnitService;
             _stockTypeService = stockTypeService;
+            _quantityUnitService = quantityUnitService;
+            _currencyTypeService = currencyTypeService;
             
         }
 
-        [HttpGet("StockUnit/getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
+            var viewModel = new StockUnitViewModel();
 
-            var result = _stockUnitService.GetAll();
+
+            var result = _stockUnitService.GetAllWithStockType();
             if (result.Success)
             {
+                viewModel.ListStockUnit = result.Data;
+                viewModel.StockTypeItems = new List<SelectListItem>();
+                viewModel.QuantityUnitItems = new List<SelectListItem>();
+                viewModel.CurrencyTypePurchaseItems = new List<SelectListItem>();
+                viewModel.CurrencyTypeSaleItems = new List<SelectListItem>();
+
+
+                var stockItems = _stockTypeService.GetAllStockTypesSelectList();
+                var quantityUnitItems = _quantityUnitService.GetAllQuantityUnitSelectList();
+                var currencyTypePurchaseItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
+                var currencyTypeSaleItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
+                
+
+
+                foreach (var item in stockItems)
+                {
+                    viewModel.StockTypeItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+                foreach (var item in quantityUnitItems)
+                {
+                    viewModel.QuantityUnitItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+                foreach (var item in currencyTypePurchaseItems)
+                {
+                    viewModel.CurrencyTypePurchaseItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+                foreach (var item in currencyTypeSaleItems)
+                {
+                    viewModel.CurrencyTypeSaleItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
                 //return Ok(result);
-                return View(result.Data);
+                return View(viewModel);
             }
             else
             {
@@ -39,22 +77,22 @@ namespace MVC.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult GetAllWithStockTypeNonDeleted()
-        {
+        //[HttpGet]
+        //public IActionResult GetAllWithStockTypeNonDeleted()
+        //{
 
-            var result = _stockUnitService.GetAll();
-            if (result.Success)
-            {
-                //return Ok(result);
-                return View(result.Data);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
+        //    var result = _stockUnitService.GetAll();
+        //    if (result.Success)
+        //    {
+        //        //return Ok(result);
+        //        return View(result.Data);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest(result);
+        //    }
 
-        }
+        //}
 
 
         [HttpGet]

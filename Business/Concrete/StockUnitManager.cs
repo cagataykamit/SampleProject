@@ -6,6 +6,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using Entities.DTOs.StockUnit;
 
 namespace Business.Concrete
 {
@@ -53,7 +54,7 @@ namespace Business.Concrete
             var objStock = _stockUnitDal.Get(x => x.Id == stockUnit.Id);
 
             _stockUnitDal.Delete(stockUnit);
-            return new SuccessResult(Messages.StockDeleted);
+            return new SuccessResult(Messages.StockUnitDeleted);
         }
 
         public IResult Update(StockUnit stockUnit)
@@ -71,12 +72,17 @@ namespace Business.Concrete
             objStock.IdStockType = stockUnit.IdStockType;
             objStock.Weight = stockUnit.Weight;
             _stockUnitDal.Update(stockUnit);
-            return new SuccessResult(Messages.StockUpdated);
+            return new SuccessResult(Messages.StockUnitUpdated);
         }
 
         public IDataResult<List<StockSelectListDto>> GetAllStocksByStockType(int idStockType)
         {
             return new SuccessDataResult<List<StockSelectListDto>>(_stockUnitDal.GetAllStocksByStockType(idStockType), Messages.StockTypeListed);
+        }
+
+        public IDataResult<List<StockUnitWithStockTypeDto>> GetAllWithStockType()
+        {
+            return new SuccessDataResult<List<StockUnitWithStockTypeDto>>(_stockUnitDal.GetAllWithStockType(), Messages.StockTypeListed);
         }
     }
 }

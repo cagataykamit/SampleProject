@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Business.AutoMapper.StockUnitProfile
 {
     public class StockUnitProfile:Profile

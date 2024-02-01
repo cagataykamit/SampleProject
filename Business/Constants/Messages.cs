@@ -15,17 +15,28 @@ namespace Business.Constants
         public static string StockTypeAdded = "Stok tipi başarıyla eklendi";
         public static string StockTypeDeleted = "Stok tipi başarıyla silindi";
         public static string StockTypeUpdated = "Stok tipi başarıyla güncellendi";
+        public static string StockTypeListed = "Stok tipleri listelendi";
 
-        public static string StockAdded = "Stok başarıyla eklendi";
-        public static string StockDeleted = "Stok başarıyla silindi";
-        public static string StockUpdated = "Stok başarıyla güncellendi";
+        public static string StockUnitAdded = "Stok başarıyla eklendi";
+        public static string StockUnitDeleted = "Stok başarıyla silindi";
+        public static string StockUnitUpdated = "Stok başarıyla güncellendi";
 
 
         public static string StockListAdded = "Stok başarıyla eklendi";
         public static string StockListDeleted = "Stok başarıyla silindi";
         public static string StockListUpdated = "Stok başarıyla güncellendi";
         public static string StockListTypeListed = "Stok operasyonları listelendi.";
-        
+
+        public static string QuantityUnitAdded = "Stok başarıyla eklendi";
+        public static string QuantityUnitDeleted = "Stok başarıyla silindi";
+        public static string QuantityUnitUpdated = "Stok başarıyla güncellendi";
+        public static string QuantityUnitListed = "Stok operasyonları listelendi.";
+
+        public static string CurrencyTypeAdded = "Para birimi başarıyla eklendi";
+        public static string CurrencyTypeDeleted = "Para birimi başarıyla silindi";
+        public static string CurrencyTypeUpdated = "Para birimi başarıyla güncellendi";
+        public static string CurrencyTypeListed = "Para birimi operasyonları listelendi.";
+
 
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
         public static string MaintenanceTime = "Sistem bakımda";
@@ -33,6 +44,6 @@ namespace Business.Constants
         public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir";
         public static string ProductNameAlreadyExist = "Bu isimde bir ürün zaten var";
         public static string CategoryLimitExceded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor";
-        public static string StockTypeListed = "Stok tipleri listelendi";
+        
     }
 }

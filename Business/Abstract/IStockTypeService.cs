@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Business.Abstract
 {
@@ -13,5 +14,6 @@ namespace Business.Abstract
         IDataResult<List<StockType>> GetAll();
         IResult Add(StockType stockType);
         IResult Update(StockType stockType);
+        List<SelectListItem> GetAllStockTypesSelectList();
     }
 }

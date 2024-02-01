@@ -30,6 +30,12 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<StockListManager>().As<IStockListService>().SingleInstance();
             builder.RegisterType<EfStockListDal>().As<IStockListDal>().SingleInstance();
 
+            builder.RegisterType<QuantityUnitManager>().As<IQuantityUnitService>().SingleInstance();
+            builder.RegisterType<EfQuantityUnitDal>().As<IQuantityUnitDal>().SingleInstance();
+
+            builder.RegisterType<CurrencyTypeManager>().As<ICurrencyTypeService>().SingleInstance();
+            builder.RegisterType<EfCurrencyTypeDal>().As<ICurrencyTypeDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

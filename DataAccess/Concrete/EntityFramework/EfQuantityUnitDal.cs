@@ -1,9 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using DataAccess.EntityFramework;
-using Entities;
 using Entities.Concrete;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +11,13 @@ using System.Web.Mvc;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfStockTypeDal : EfEntityRepositoryBase<StockType, StockContext>, IStockTypeDal
+    public class EfQuantityUnitDal : EfEntityRepositoryBase<QuantityUnit, StockContext>, IQuantityUnitDal
     {
-        public List<SelectListItem> GetAllStockTypesSelectList()
+        public List<SelectListItem> GetAllQuantityUnitSelectList()
         {
             using (StockContext context = new StockContext())
             {
-                var result = from s in context.StockTypes
+                var result = from s in context.QuantityUnits
                              select new SelectListItem
                              {
                                  Value = s.Id.ToString(),
