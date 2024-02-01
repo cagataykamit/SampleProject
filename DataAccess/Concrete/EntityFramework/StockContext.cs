@@ -87,7 +87,7 @@ public partial class StockContext : DbContext
             entity.HasOne(d => d.IdStockUnitNavigation).WithMany(p => p.StockLists)
                 .HasForeignKey(d => d.IdStockUnit)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_StockOperations_Stocks");
+                .HasConstraintName("FK_StockLists_StockUnits");
         });
 
         modelBuilder.Entity<StockType>(entity =>
@@ -109,16 +109,16 @@ public partial class StockContext : DbContext
 
             entity.HasOne(d => d.IdCurrencyTypePurchaseNavigation).WithMany(p => p.StockUnitIdCurrencyTypePurchaseNavigations)
                 .HasForeignKey(d => d.IdCurrencyTypePurchase)
-                .HasConstraintName("FK__Stock__IdCurrenc__4CA06362");
+                .HasConstraintName("FK_StockUnits_CurrencyTypes");
 
             entity.HasOne(d => d.IdCurrencyTypeSaleNavigation).WithMany(p => p.StockUnitIdCurrencyTypeSaleNavigations)
                 .HasForeignKey(d => d.IdCurrencyTypeSale)
-                .HasConstraintName("FK__Stock__IdCurrenc__4D94879B");
+                .HasConstraintName("FK_StockUnits_CurrencyTypes1");
 
             entity.HasOne(d => d.IdQuantityUnitNavigation).WithMany(p => p.StockUnits)
                 .HasForeignKey(d => d.IdQuantityUnit)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_StockUnits_QuantityUnits");
+                .HasConstraintName("FK_StockUnits_QuantityUnits1");
 
             entity.HasOne(d => d.IdStockTypeNavigation).WithMany(p => p.StockUnits)
                 .HasForeignKey(d => d.IdStockType)
@@ -128,7 +128,6 @@ public partial class StockContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

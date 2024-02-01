@@ -1,54 +1,155 @@
 ﻿@using Entities.Concrete;
-@model List<StockList>
+@using Entities.DTOs.StockUnit;
+
+@model StockListViewModel
 
 <div class="container-xxl flex-grow-1 container-p-y">
 
 
     <h4 class="py-3 mb-4">
-        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Türleri
+        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Birimleri
     </h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
-        <h5 class="card-header">Table Basic</h5>
+        <h5 class="card-header">Stok Birimleri Listesi</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Başlık</th>
-                        <th>Durum</th>
-                        <th>SİLİNDİ Mİ?</th>
+                        <th>Birim Kodu</th>
+                        <th>Birim Açıklaması</th>
+                        <th>Stok Türü</th>
+                        <th>Toplam Stok Miktarı</th>
+                        <th>Kritik Miktar</th>
                         <th>İşlemler</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>Başlık</th>
-                        <th>Durum</th>
-                        <th>SİLİNDİ Mİ?</th>
+                        <th>Birim Kodu</th>
+                        <th>Birim Açıklaması</th>
+                        <th>Stok Türü</th>
+                        <th>Toplam Stok Miktarı</th>
+                        <th>Kritik Miktar</th>
                         <th>İşlemler</th>
                     </tr>
                 </tfoot>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var stockList in Model)
+                    @foreach (var item in Model.ListStockList)
                     {
-                        <tr name=@stockList.Id>
-                            <th>@stockList.IdStockUnit</th>
-                            <th>@stockList.IdCabinet</th>
-                            <th>@(stockList.Deleted ? "Evet" : "Hayır")</th>
-                            <td> as</td>
+                        <tr name=@item.Id>
+                            <td>@item.StockCode</td>
+                            <td>@item.StockUnitDescription</td>
+                            <td>@item.StockTypeName</td>
+                            <td></td>
+                            <td>@item.CriticalAmount</td>
+                            <td></td>
+
+                            <td></td>
                         </tr>
                     }
 
                 </tbody>
 
             </table>
-            <button type="button" class="btn btn-primary">Ekle</button>
+            <form asp-action="Add" asp-controller="StockUnit" method="post" class="mt-4">
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Ekle</button>
+                <div class="modal" id="Modal1">
+                    <div class="modal-dialog modal-lg modal-start"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Stok Birimi Ekle</h2>
+                        </div>
+
+                        <div class="modal-body">
+
+
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Stok Birim Kodu</label>
+                                <div class="col-4">
+                                    <input class="form-control" name="StockCode" id="StockCode" type="text">
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="form-group">
+                                <label asp-for="Model.IdStockType">Stok Türü</label>
+                                <select asp-for="Model.IdStockType" asp-items="Model.StockTypeItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="Model.IdStockType" class="text-danger"></span>
+                            </div>
+
+                            <br />
+
+                            <div class="form-group">
+                                <label asp-for="Model.IdQuantityUnit">Miktar Birimi</label>
+                                <select asp-for="Model.IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="Model.IdQuantityUnit" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Açıklama</label>
+                                <div class="col-4">
+                                    <input class="form-control" name="Description" id="Description" type="text">
+                                </div>
+                            </div>
+
+                            <br />
+
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Alış Fiyatı</label>
+                                <div class="col-4">
+                                    <input class="form-control" name="PurchasePrice" id="PurchasePrice" type="text">
+                                </div>
+                            </div>
+
+                            <br />
+
+                          
+
+                            <br />
+
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Satış Fiyatı</label>
+                                <div class="col-4">
+                                    <input class="form-control" name="SalePrice" id="SalePrice" type="text">
+                                </div>
+                            </div>
+
+                            <br />
+
+
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Kağıt Ağırlığı</label>
+                                <div class="col-4">
+                                    <input class="form-control" name="Weight" id="Weight" type="text">
+                                </div>
+                            </div>
+
+
+
+                            <button class="btn btn-danger" type="submit">Ekle</button>
+                            <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                            <br />
+
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <!--/ Basic Bootstrap Table -->
 </div>
 
+
+
 @section Scripts{
-    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+    <script src="~/js/stockTypeIndex.js" type="application/ecmascript"></script>
 }

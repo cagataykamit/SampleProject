@@ -8,8 +8,6 @@ namespace Entities.DTOs.StockUnit
 
         public string? StockCode { get; set; }
 
-      
-
         public int IdQuantityUnit { get; set; }
 
         public string? Description { get; set; }

@@ -31,7 +31,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(StockListValidator))]
-        public IResult Add(StockList StockList)
+        public IResult Add(StockList stockList)
         {
             //business codes
             //IResult result = BusinessRules.Run(CheckIfStockListNameExist(StockList.Name));
@@ -40,7 +40,7 @@ namespace Business.Concrete
             //{
             //    return result;
             //}
-            _stockListDal.Add(StockList);
+            _stockListDal.Add(stockList);
 
             return new SuccessResult(Messages.ProductAdded);
         }
@@ -54,33 +54,28 @@ namespace Business.Concrete
         //    return new SuccessResult();
         //}
 
-        public IResult Delete(StockList StockList)
+        public IResult Delete(StockList stockList)
         {
 
-            var objStockList = _stockListDal.Get(x => x.Id == StockList.Id);
+            var objStockList = _stockListDal.Get(x => x.Id == stockList.Id);
  
-            _stockListDal.Delete(StockList);
+            _stockListDal.Delete(stockList);
             return new SuccessResult(Messages.StockListDeleted);
         }
 
-        public IResult Update(StockList StockList)
+        public IResult Update(StockList stockList)
         {
 
-            var objStockList = _stockListDal.Get(x=>x.Id == StockList.Id);
+            var objStockList = _stockListDal.Get(x=>x.Id == stockList.Id);
 
-            // TODO kamit düzelt
-
-            //objStockList.SalePrice = StockList.SalePrice;
-            //objStockList.PurchasePrice = StockList.PurchasePrice;
-            //objStockList.IdCurrencyTypePurchase = StockList.IdCurrencyTypePurchase;
-            //objStockList.StockListCode = StockList.StockListCode;
-            //objStockList.Description = StockList.Description;
-            //objStockList.IdAmountType = StockList.IdAmountType;
-            //objStockList.IdCurrencyTypePurchase = StockList.IdCurrencyTypePurchase;
-            //objStockList.IdCurrencyTypeSale = StockList.IdCurrencyTypeSale;
-            //objStockList.IdStockListType = StockList.IdStockListType;
-            //objStockList.Weight = StockList.Weight;
-            _stockListDal.Update(StockList);
+            objStockList.IdStockUnit = stockList.IdStockUnit;
+            objStockList.Amount = stockList.Amount;
+            objStockList.IdShelf = stockList.IdShelf;
+            objStockList.IdCabinet = stockList.IdCabinet;
+            objStockList.CriticalAmount = stockList.CriticalAmount;
+            objStockList.Deleted = stockList.Deleted;
+   
+            _stockListDal.Update(stockList);
             return new SuccessResult(Messages.StockListUpdated);
         }
     }
