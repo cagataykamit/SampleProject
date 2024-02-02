@@ -65,7 +65,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label asp-for="Model.IdStockClass">Stok Sınıfı</label>
-                                <select asp-for="Model.IdStockClass" asp-items="Model.StockClassItems" class="form-control">
+                                <select name="IdStockClass" asp-items="Model.StockClassItems" class="form-control">
                                     <option value="">-- Select --</option>
                                 </select>
                                 <span asp-validation-for="Model.IdStockClass" class="text-danger"></span>
@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label asp-for="Model.IdStockType">Stok Türü</label>
-                                <select asp-for="Model.IdStockType" asp-items="Model.StockTypeItems" class="form-control">
+                                <select name="IdStockType" asp-items="Model.StockTypeItems" class="form-control">
                                     <option value="">-- Select --</option>
                                 </select>
                                 <span asp-validation-for="Model.IdStockType" class="text-danger"></span>
@@ -85,7 +85,7 @@
 
                             <div class="form-group">
                                 <label asp-for="Model.IdStockUnit">Stok Birim Adı</label>
-                                <select asp-for="Model.IdStockUnit" asp-items="Model.StockUnitItems" class="form-control">
+                                <select name="IdStockUnit" asp-items="Model.StockUnitItems" class="form-control">
                                     <option value="">-- Select --</option>
                                 </select>
                                 <span asp-validation-for="Model.IdStockUnit" class="text-danger"></span>
