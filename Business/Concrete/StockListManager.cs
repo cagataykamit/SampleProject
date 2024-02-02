@@ -8,6 +8,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs.StockList;
+using Entities.DTOs.StockUnit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace Business.Concrete
             _stockListDal = stockListDal;
         }
 
-        public IDataResult<List<StockListDto>> GetAll()
+        public IDataResult<List<StockListWithStockTypeAndStockUnitDto>> GetAll()
         {
 
-            return new SuccessDataResult<List<StockListDto>>(_stockListDal.GetAllForTable(), Messages.StockListTypeListed);
+            return new SuccessDataResult<List<StockListWithStockTypeAndStockUnitDto>>(_stockListDal.GetAllForTable(), Messages.StockListTypeListed);
         }
 
         [ValidationAspect(typeof(StockListValidator))]
@@ -77,6 +78,16 @@ namespace Business.Concrete
    
             _stockListDal.Update(stockList);
             return new SuccessResult(Messages.StockListUpdated);
+        }
+
+        public IDataResult<List<StockListWithStockTypeAndStockUnitDto>> GetAllForTable()
+        {
+            return new SuccessDataResult<List<StockListWithStockTypeAndStockUnitDto>>(_stockListDal.GetAllForTable(), Messages.StockTypeListed);
+        }
+
+        IDataResult<List<StockListDto>> IStockListService.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

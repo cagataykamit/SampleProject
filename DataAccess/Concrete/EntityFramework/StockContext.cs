@@ -25,6 +25,8 @@ public partial class StockContext : DbContext
 
     public virtual DbSet<Shelf> Shelfs { get; set; }
 
+    public virtual DbSet<StockClass> StockClasses { get; set; }
+
     public virtual DbSet<StockList> StockLists { get; set; }
 
     public virtual DbSet<StockType> StockTypes { get; set; }
@@ -70,6 +72,11 @@ public partial class StockContext : DbContext
             entity.Property(e => e.Code).HasMaxLength(50);
         });
 
+        modelBuilder.Entity<StockClass>(entity =>
+        {
+            entity.Property(e => e.Name).HasMaxLength(50);
+        });
+
         modelBuilder.Entity<StockList>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_StockOperations");
@@ -77,12 +84,22 @@ public partial class StockContext : DbContext
             entity.HasOne(d => d.IdCabinetNavigation).WithMany(p => p.StockLists)
                 .HasForeignKey(d => d.IdCabinet)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_StockOperations_Cabinets");
+                .HasConstraintName("FK_StockLists_Cabinets");
 
             entity.HasOne(d => d.IdShelfNavigation).WithMany(p => p.StockLists)
                 .HasForeignKey(d => d.IdShelf)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_StockOperations_Shelfs");
+                .HasConstraintName("FK_StockLists_Shelfs");
+
+            entity.HasOne(d => d.IdStockClassNavigation).WithMany(p => p.StockLists)
+                .HasForeignKey(d => d.IdStockClass)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StockLists_StockClasses");
+
+            entity.HasOne(d => d.IdStockTypeNavigation).WithMany(p => p.StockLists)
+                .HasForeignKey(d => d.IdStockType)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StockLists_StockTypes");
 
             entity.HasOne(d => d.IdStockUnitNavigation).WithMany(p => p.StockLists)
                 .HasForeignKey(d => d.IdStockUnit)

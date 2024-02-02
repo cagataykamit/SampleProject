@@ -13,7 +13,7 @@ namespace Entities.DTOs.StockList
         public int Id { get; set; }
 
         public int IdStockUnit { get; set; }
-        public int StockCode { get; set; }
+        public string StockCode { get; set; }
         public string StockTypeName { get; set; }
         public string StockUnitDescription { get; set; }
 
@@ -26,6 +26,11 @@ namespace Entities.DTOs.StockList
         public int CriticalAmount { get; set; }
 
         public bool Deleted { get; set; }
+        public string? ShelfCode { get; set; }
+
+        public string? CabinetCode { get; set; }
+
+
 
     }
 }

@@ -38,7 +38,14 @@
                             <th>@stockType.Name</th>
                             <th>@(stockType.IsActive ? "Aktif" : "Aktif Değil")</th>
                             <th>@(stockType.Deleted ? "Evet" : "Hayır")</th>
-                            <td> as</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary" onclick="updateItem(@stockType.Id)">
+                                    <span class="bi bi-pencil-square"></span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteItem(@stockType.Id)">
+                                    <span class="bi bi-trash"></span>
+                                </button>
+                            </td>
                         </tr>
                     }
 
@@ -86,31 +93,3 @@
     <script src="~/js/stockTypeIndex.js" type="application/ecmascript"></script>
 
             }
-
-
-
-
-
-             @*    <form class="form-group" method="post">
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Ekle</button>
-                    <div class="modal" id="Modal1">
-                        <div class="modal-dialog"></div>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Stok Birimi Ekle</h2>
-                            </div>
-
-                            <div class="modal-body">
-                                <label>Stok Türü</label>
-                                <input type="submit" name="StockType" class="form-control" />
-                                <button type="submit">Gönder</button>
-                                <button class="btn btn-dark">İptal</button>
-                                <br />
-
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
- *@

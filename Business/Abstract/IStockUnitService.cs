@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Business.Abstract
 {
@@ -15,10 +16,12 @@ namespace Business.Abstract
         IDataResult<List<StockUnit>> GetAll();
         IResult Add(StockUnit stockUnit);
         IResult Update(StockUnit stockUnit);
-        IDataResult<List<StockSelectListDto>> GetAllStocksByStockType(int idStockType);
+        IDataResult<List<StockSelectListDto>> GetAllStockUnitByStockType(int idStockType);
         IDataResult<List<StockUnitWithStockTypeDto>> GetAllWithStockType();
 
+        List<SelectListItem> GetAllStockUnitSelectList();
 
-        
+
+
     }
 }

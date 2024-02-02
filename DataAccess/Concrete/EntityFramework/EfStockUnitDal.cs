@@ -9,12 +9,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfStockUnitDal : EfEntityRepositoryBase<StockUnit, StockContext>, IStockUnitDal
     {
-        public List<StockSelectListDto> GetAllStocksByStockType(int idStockType)
+        public List<StockSelectListDto> GetAllStockUnitByStockType(int idStockType)
         {
             using (StockContext context = new StockContext())
             {
@@ -61,6 +62,20 @@ namespace DataAccess.Concrete.EntityFramework
                                  CurrencyTypePurchaseSymbol = ctp.Symbol,
                                  CurrencyTypeSaleSymbol = cts.Symbol,
                                  CurrencyTypeSaleName = cts.Name,                               
+                             };
+                return result.ToList();
+            }
+        }
+
+        public List<SelectListItem> GetAllStockUnitSelectList()
+        {
+            using (StockContext context = new StockContext())
+            {
+                var result = from s in context.StockUnits
+                             select new SelectListItem
+                             {
+                                 Value = s.Id.ToString(),
+                                 Text = s.Description,
                              };
                 return result.ToList();
             }

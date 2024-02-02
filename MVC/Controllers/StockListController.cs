@@ -5,29 +5,62 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MVC.Models;
 
 namespace MVC.Controllers
 {
     public class StockListController : Controller
     {
         IStockListService _stockListService;
-        IStockUnitService _stockService;
+        IStockUnitService _stockUnitService;
+        IStockTypeService _stockTypeService;
+        IStockClassService _stockClassService;
 
-        public StockListController(IStockListService StockListService, IStockUnitService stockService)
+        public StockListController(IStockListService StockListService, IStockUnitService stockUnitService, IStockTypeService stockTypeService, IStockClassService stockClassService)
         {
             _stockListService = StockListService;
-            _stockService = stockService;
+            _stockUnitService = stockUnitService;
+            _stockTypeService = stockTypeService;
+            _stockClassService = stockClassService;
         }
 
         [HttpGet("StockList/getall")]
         public IActionResult GetAll()
         {
+            var viewModel = new StockListViewModel();
 
-            var result = _stockListService.GetAll();
+            var result = _stockListService.GetAllForTable();
             if (result.Success)
             {
+                viewModel.ListStockList = result.Data;
+                viewModel.StockTypeItems = new List<SelectListItem>();
+                viewModel.StockClassItems = new List<SelectListItem>();
+                viewModel.StockUnitItems = new List<SelectListItem>();
+                
+
+
+                var stockTypeItems = _stockTypeService.GetAllStockTypesSelectList();
+                var stockUnitItems = _stockUnitService.GetAllStockUnitSelectList();
+                var stockClassItems = _stockClassService.GetAllStockClassSelectList();
+
+
+
+                foreach (var item in stockTypeItems)
+                {
+                    viewModel.StockTypeItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+                foreach (var item in stockUnitItems)
+                {
+                    viewModel.StockUnitItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+                foreach (var item in stockClassItems)
+                {
+                    viewModel.StockClassItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
+                }
+               
                 //return Ok(result);
-                return View(result.Data);
+                return View(viewModel);
             }
             else
             {
@@ -40,7 +73,7 @@ namespace MVC.Controllers
         public IActionResult GetAll(int idStockType)
         {
 
-            IDataResult<List<StockSelectListDto>> result = _stockService.GetAllStocksByStockType(idStockType);
+            IDataResult<List<StockSelectListDto>> result = _stockUnitService.GetAllStockUnitByStockType(idStockType);
             if (result.Success)
             {
                 //return Ok(result);

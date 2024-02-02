@@ -38,6 +38,12 @@ namespace Business.Constants
         public static string CurrencyTypeListed = "Para birimi operasyonları listelendi.";
 
 
+        public static string StockClassAdded = "Stok sınıfı başarıyla eklendi";
+        public static string StockClassDeleted = "Stok sınıfı başarıyla silindi";
+        public static string StockClassUpdated = "Stok sınıfı başarıyla güncellendi";
+        public static string StockClassListed = "Stok sınıfı operasyonları listelendi.";
+
+
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
         public static string MaintenanceTime = "Sistem bakımda";
         public static string ProductListed = "Ürünler listelendi.";

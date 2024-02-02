@@ -36,6 +36,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CurrencyTypeManager>().As<ICurrencyTypeService>().SingleInstance();
             builder.RegisterType<EfCurrencyTypeDal>().As<ICurrencyTypeDal>().SingleInstance();
 
+            builder.RegisterType<StockClassManager>().As<IStockClassService>().SingleInstance();
+            builder.RegisterType<EfStockClassDal>().As<IStockClassDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

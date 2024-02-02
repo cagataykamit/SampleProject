@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfStockListDal : EfEntityRepositoryBase<StockList, StockContext>, IStockListDal
     {
-        public List<StockListDto> GetAllForTable()
+        public List<StockListWithStockTypeAndStockUnitDto> GetAllForTable()
         {
             using (StockContext context = new StockContext())
             {
@@ -24,11 +24,12 @@ namespace DataAccess.Concrete.EntityFramework
                              join sh in context.Shelfs on so.IdShelf equals sh.Id
                              join c in context.Cabinets on so.IdCabinet equals c.Id
                              where so.Deleted == false && s.Deleted == false && st.Deleted == false && sh.Deleted == false && c.Deleted == false
-                             select new StockListDto
+                             select new StockListWithStockTypeAndStockUnitDto
                              {
                                  Id = so.Id,
                                  StockCode = s.StockCode,
                                  Amount = so.Amount,
+                                 StockUnitDescription = s.Description,
                                  ShelfCode = sh.Code,
                                  CabinetCode = c.Code,
                                  CriticalAmount = so.CriticalAmount,

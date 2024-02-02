@@ -44,14 +44,14 @@
                             <td>@item.StockTypeName</td>
                             <td></td>
                             <td>@item.CriticalAmount</td>
-                            <td></td>
-
-                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary" onclick="updateItem(@item.Id)">
+                                    <span class="bi bi-pencil-square"></span>
+                                </button>
+                            </td>
                         </tr>
                     }
-
                 </tbody>
-
             </table>
             <form asp-action="Add" asp-controller="StockUnit" method="post" class="mt-4">
 
@@ -62,15 +62,13 @@
                         <div class="modal-header">
                             <h2 class="modal-title">Stok Birimi Ekle</h2>
                         </div>
-
                         <div class="modal-body">
-
-
                             <div class="form-group">
-                                <label class="text-dark" for="Name">Stok Birim Kodu</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="StockCode" id="StockCode" type="text">
-                                </div>
+                                <label asp-for="Model.IdStockClass">Stok Sınıfı</label>
+                                <select asp-for="Model.IdStockClass" asp-items="Model.StockClassItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="Model.IdStockClass" class="text-danger"></span>
                             </div>
 
                             <br />
@@ -86,15 +84,15 @@
                             <br />
 
                             <div class="form-group">
-                                <label asp-for="Model.IdQuantityUnit">Miktar Birimi</label>
-                                <select asp-for="Model.IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
+                                <label asp-for="Model.IdStockUnit">Stok Birim Adı</label>
+                                <select asp-for="Model.IdStockUnit" asp-items="Model.StockUnitItems" class="form-control">
                                     <option value="">-- Select --</option>
                                 </select>
-                                <span asp-validation-for="Model.IdQuantityUnit" class="text-danger"></span>
+                                <span asp-validation-for="Model.IdStockUnit" class="text-danger"></span>
                             </div>
 
                             <div class="form-group">
-                                <label class="text-dark" for="Name">Açıklama</label>
+                                <label class="text-dark" for="Name">Miktar</label>
                                 <div class="col-4">
                                     <input class="form-control" name="Description" id="Description" type="text">
                                 </div>
@@ -103,7 +101,7 @@
                             <br />
 
                             <div class="form-group">
-                                <label class="text-dark" for="Name">Alış Fiyatı</label>
+                                <label class="text-dark" for="Name">Raf Bilgisi</label>
                                 <div class="col-4">
                                     <input class="form-control" name="PurchasePrice" id="PurchasePrice" type="text">
                                 </div>
@@ -111,35 +109,27 @@
 
                             <br />
 
-                          
-
-                            <br />
-
                             <div class="form-group">
-                                <label class="text-dark" for="Name">Satış Fiyatı</label>
+                                <label class="text-dark" for="Name">Dolap Bilgisi</label>
                                 <div class="col-4">
                                     <input class="form-control" name="SalePrice" id="SalePrice" type="text">
                                 </div>
                             </div>
-
                             <br />
-
-
                             <div class="form-group">
-                                <label class="text-dark" for="Name">Kağıt Ağırlığı</label>
+                                <label class="text-dark" for="Name">Kritik Miktar</label>
                                 <div class="col-4">
                                     <input class="form-control" name="Weight" id="Weight" type="text">
                                 </div>
                             </div>
 
+                            <br />
 
-
-                            <button class="btn btn-danger" type="submit">Ekle</button>
-                            <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                            <button class="btn btn-success" type="submit">+ Stok Ekle</button>
+                            <button class="btn btn-light" type="button" data-dismiss="modal">İptal</button>
                             <br />
 
                         </div>
-
                     </div>
                 </div>
             </form>

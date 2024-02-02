@@ -4,9 +4,11 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using Entities.DTOs.StockUnit;
+using System.Web.Mvc;
 
 namespace Business.Concrete
 {
@@ -75,14 +77,21 @@ namespace Business.Concrete
             return new SuccessResult(Messages.StockUnitUpdated);
         }
 
-        public IDataResult<List<StockSelectListDto>> GetAllStocksByStockType(int idStockType)
+        public IDataResult<List<StockSelectListDto>> GetAllStockUnitByStockType(int idStockType)
         {
-            return new SuccessDataResult<List<StockSelectListDto>>(_stockUnitDal.GetAllStocksByStockType(idStockType), Messages.StockTypeListed);
+            return new SuccessDataResult<List<StockSelectListDto>>(_stockUnitDal.GetAllStockUnitByStockType(idStockType), Messages.StockTypeListed);
         }
 
         public IDataResult<List<StockUnitWithStockTypeDto>> GetAllWithStockType()
         {
             return new SuccessDataResult<List<StockUnitWithStockTypeDto>>(_stockUnitDal.GetAllWithStockType(), Messages.StockTypeListed);
         }
+
+        public List<SelectListItem> GetAllStockUnitSelectList()
+        {
+            return _stockUnitDal.GetAllStockUnitSelectList();
+        }
+
+
     }
 }
