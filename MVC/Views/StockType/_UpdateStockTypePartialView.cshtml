@@ -1,0 +1,37 @@
+﻿@using Entities.Concrete;
+@model StockType;
+
+<div class="modal fade" id="updateStockTypeModal-@Model.Id" aria-labelledby="updateStockTypeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addStockTypeModalLabel">Stok Birimi Ekle</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Id"/>
+                        <label asp-for="Name" class="custom-control-label">Stok Türü</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" asp-for="IsActive" value="true" />
+                        <label class="form-check-label" asp-for="IsActive">Aktif mi?</label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

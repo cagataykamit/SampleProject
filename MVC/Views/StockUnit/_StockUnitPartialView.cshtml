@@ -1,0 +1,86 @@
+﻿@model StockUnitViewModel
+<div class="modal fade" id="addStockUnitModal" aria-labelledby="addStockUnitLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addStockUnitModalLabel">Stok Birimi Ekle</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" asp-controller="StockUnit" method="post" class="mt-4">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Stok Birim Kodu</label>
+                            <div class="col-4">
+                                <input class="form-control" name="StockCode" id="StockCode" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="Model.IdStockType">Stok Türü</label>
+                            <select name="IdStockType" asp-items="Model.StockTypeItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="Model.IdStockType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Model.IdQuantityUnit">Miktar Birimi</label>
+                            <select name="IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="Model.IdQuantityUnit" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Açıklama</label>
+                            <div class="col-4">
+                                <input class="form-control" name="Description" id="Description" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Alış Fiyatı</label>
+                            <div class="col-4">
+                                <input class="form-control" name="PurchasePrice" id="PurchasePrice" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="Model.IdCurrencyTypePurchase">Alış Fiyatı Para Birimi</label>
+                            <select name="IdCurrencyTypePurchase" asp-items="Model.CurrencyTypePurchaseItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="Model.IdCurrencyTypePurchase" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Satış Fiyatı</label>
+                            <div class="col-4">
+                                <input class="form-control" name="SalePrice" id="SalePrice" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="Model.IdCurrencyTypeSale">Satış Fiyatı Para Birimi</label>
+                            <select name="IdCurrencyTypeSale" asp-items="Model.CurrencyTypeSaleItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="Model.IdCurrencyTypeSale" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Kağıt Ağırlığı</label>
+                            <div class="col-4">
+                                <input class="form-control" name="Weight" id="Weight" type="text">
+                            </div>
+                        </div>
+                        <button class="btn btn-danger" type="submit">Ekle</button>
+                        <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                        <br />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

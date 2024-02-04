@@ -14,6 +14,7 @@ namespace Business.Abstract
         IDataResult<List<StockType>> GetAll();
         IResult Add(StockType stockType);
         IResult Update(StockType stockType);
+        IResult Delete(StockType stockType);
         List<SelectListItem> GetAllStockTypesSelectList();
     }
 }

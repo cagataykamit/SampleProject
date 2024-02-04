@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
+using System.Web.Razor.Parser.SyntaxTree;
 
 namespace MVC.Controllers
 {
@@ -36,12 +37,10 @@ namespace MVC.Controllers
 
         }
 
-
         [HttpGet]
         public IActionResult Add()
         {
             return View();
-            //return PartialView("_StockTypeAddPartial");
         }
 
         [HttpPost]
@@ -50,7 +49,7 @@ namespace MVC.Controllers
             var result = _stockTypeService.Add(RequestModel);
             if (result.Success)
             {
-                return RedirectToAction("GetAll",new { message = result.Message});
+                return RedirectToAction("GetAll");
             }
             else
             {
@@ -58,6 +57,40 @@ namespace MVC.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Update()
+        {
+            
+            return PartialView("_UpdateStockTypePartialView");
+        }
+
+        [HttpPost]
+        public IActionResult Update(StockType stockType)
+        {
+            var result = _stockTypeService.Update(stockType);
+            if (result.Success)
+            {
+                return RedirectToAction("GetAll", new { message = result.Message });
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(StockType stockType)
+        {
+            var result = _stockTypeService.Delete(stockType);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
         //[HttpGet("getbyid")]
         //public IActionResult GetById(int id)
         //{

@@ -12,8 +12,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public StockUnitValidator()
         {
-            //RuleFor(p => p.SalePrice).Min(2);
-            //RuleFor(p => p.Name).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalıdır.");
+            RuleFor(s => s.SalePrice).GreaterThan(10);
+           
         }
 
     }

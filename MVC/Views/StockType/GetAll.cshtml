@@ -4,8 +4,6 @@
     Layout = "_Layout";
 }
 <div class="container-xxl flex-grow-1 container-p-y">
-
-
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Türleri
     </h4>
@@ -32,64 +30,43 @@
                     </tr>
                 </tfoot>
                 <tbody class="table-border-bottom-0">
-                    @foreach (var stockType in Model.LstStock)
+                    @foreach (var item in Model.LstStock)
                     {
-                        <tr name=@stockType.Id>
-                            <th>@stockType.Name</th>
-                            <th>@(stockType.IsActive ? "Aktif" : "Aktif Değil")</th>
-                            <th>@(stockType.Deleted ? "Evet" : "Hayır")</th>
+                        <tr name=@item.Id>
+                            <th>@item.Name</th>
+                            <th>@(item.IsActive ? "Aktif" : "Aktif Değil")</th>
+                            <th>@(item.Deleted ? "Evet" : "Hayır")</th>
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" onclick="updateItem(@stockType.Id)">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                        data-target="#updateStockTypeModal-@item.Id" data-url="@Url.Action("Update", "StockType", new { id = item.Id })">
                                     <span class="bi bi-pencil-square"></span>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteItem(@stockType.Id)">
+
+                                @* Update Modalını açmak için *@
+                                @await Html.PartialAsync("_UpdateStockTypePartialView",item)
+
+                                @* <button type="button" class="btn btn-sm btn-danger" asp-for="Delete">
+                            <span class="bi bi-trash"></span>
+                            </button> *@
+                                <a href="/StockType/Delete/@item.Id" class="btn btn-sm btn-danger" asp-for="Delete">
                                     <span class="bi bi-trash"></span>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     }
-
                 </tbody>
-
             </table>
-            <form asp-action="Add" asp-controller="StockType" method="post" class="mt-4">
-        
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Ekle</button>
-                <div class="modal" id="Modal1">
-                    <div class="modal-dialog"></div>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title">Stok Birimi Ekle</h2>
-                        </div>
-                     
-                            <div class="modal-body">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStockTypeModal">Ekle</button>
 
-
-                            <div class="form-group">
-                                <label class="text-dark" for="Name">Stok Tipi</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="Name" id="Name" type="text">
-                                </div>
-                            </div>
-                            <br />
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" name="IsActive" id="IsActive" value="true">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Aktif mi?</label>
-                            </div>
-                            <br />
-                            <button class="btn btn-danger" type="submit">Gönder</button>
-                            <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
-                                <br />
-                                
-                            </div>
-                     
-                    </div>
-                </div>
-            </form>
+            @* Add Modalını açmak için *@
+            @await Html.PartialAsync("_StockTypePartialView",new StockType())
+        </div>
+    </div>
 
 
 
-@section Scripts{
-    <script src="~/js/stockTypeIndex.js" type="application/ecmascript"></script>
+    @* Tablo yazılarının Türkçeleşmesi için *@
+    @section Scripts{
+        <script src="~/js/stockTypeIndex.js" type="application/ecmascript"></script>
+    }
 
-            }

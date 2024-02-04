@@ -43,14 +43,14 @@ namespace MVC.Controllers
                 viewModel.CurrencyTypeSaleItems = new List<SelectListItem>();
 
 
-                var stockItems = _stockTypeService.GetAllStockTypesSelectList();
+                var stockTypeItems = _stockTypeService.GetAllStockTypesSelectList();
                 var quantityUnitItems = _quantityUnitService.GetAllQuantityUnitSelectList();
                 var currencyTypePurchaseItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
                 var currencyTypeSaleItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
                 
 
 
-                foreach (var item in stockItems)
+                foreach (var item in stockTypeItems)
                 {
                     viewModel.StockTypeItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
                 }
@@ -114,7 +114,19 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
-
+        [HttpGet]
+        public IActionResult Delete(StockUnit stockUnit)
+        {
+            var result = _stockUnitService.Delete(stockUnit);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
         //[HttpGet]
         //public IActionResult AddStockType()
         //{
@@ -142,7 +154,7 @@ namespace MVC.Controllers
         //[HttpPost]
         //public IActionResult AddStockType(StockUnit stockUnit)
         //{
-            
+
         //}
 
         //[HttpGet("getbyid")]
