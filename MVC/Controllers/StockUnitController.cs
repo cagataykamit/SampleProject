@@ -127,6 +127,28 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Update()
+        {
+            
+            return PartialView("_UpdateStockUnitPartialView");
+        }
+
+        [HttpPost]
+        public IActionResult Update(StockUnit stockUnit)
+        {
+            var result = _stockUnitService.Update(stockUnit);
+            if (result.Success)
+            {
+                return RedirectToAction("GetAll", new { message = result.Message });
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
         //[HttpGet]
         //public IActionResult AddStockType()
         //{
