@@ -39,7 +39,7 @@ namespace Business.Concrete
             _stockListDal.Delete(stockList);
             return new SuccessResult(Messages.StockListDeleted);
         }
-
+        [ValidationAspect(typeof(StockListValidator))]
         public IResult Update(StockList stockList)
         {
             var objStockList = _stockListDal.Get(x => x.Id == stockList.Id);
