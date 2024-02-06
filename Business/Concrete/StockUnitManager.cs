@@ -36,7 +36,7 @@ namespace Business.Concrete
         {
             _stockUnitDal.Add(stockUnit);
 
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.StockTypeAdded);
         }
 
         [LogAspect(typeof(FileLogger))]

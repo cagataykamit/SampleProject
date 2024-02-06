@@ -20,10 +20,11 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from so in context.StockLists
                              join s in context.StockUnits on so.IdStockUnit equals s.Id
-                             join st in context.StockTypes on s.IdStockType equals st.Id
+                             join st in context.StockTypes on so.IdStockType equals st.Id
+                             join sc in context.StockClasses on so.IdStockClass equals sc.Id
                              join sh in context.Shelfs on so.IdShelf equals sh.Id
                              join c in context.Cabinets on so.IdCabinet equals c.Id
-                             where so.Deleted == false && s.Deleted == false && st.Deleted == false && sh.Deleted == false && c.Deleted == false
+                             where so.Deleted == false && s.Deleted == false && st.Deleted == false && sh.Deleted == false && c.Deleted == false && sc.Deleted == false
                              select new StockListWithStockTypeAndStockUnitDto
                              {
                                  Id = so.Id,
@@ -33,7 +34,13 @@ namespace DataAccess.Concrete.EntityFramework
                                  ShelfCode = sh.Code,
                                  CabinetCode = c.Code,
                                  CriticalAmount = so.CriticalAmount,
-                                 StockTypeName = st.Name
+                                 StockTypeName = st.Name,
+                                 IdStockClass = sc.Id,
+                                 IdStockType = st.Id,
+                                 IdStockUnit = s.Id,
+
+
+                                 
                              };
                 return result.ToList();
             }

@@ -1,0 +1,79 @@
+﻿@model StockListViewModel
+<div class="modal fade" id="addStockListModal" aria-labelledby="addStockListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="addStockListModalLabel">Stok Ekle</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Add" asp-controller="StockList" method="post" class="mt-4">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Stok Birim Kodu</label>
+                            <div class="col-4">
+                                <input class="form-control" name="StockCode" id="StockCode" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label asp-for="IdStockClass">Stok Sınıfı</label>
+                            <select name="IdStockClass" asp-items="Model.StockClassItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="IdStockClass" class="text-danger"></span>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label asp-for="IdStockType">Stok Türü</label>
+                            <select name="IdStockType" asp-items="Model.StockTypeItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="IdStockType" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label asp-for="IdStockUnit">Stok Birim Adı</label>
+                            <select name="IdStockUnit" asp-items="Model.StockUnitItems" class="form-control">
+                                <option value="">-- Select --</option>
+                            </select>
+                            <span asp-validation-for="IdStockUnit" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Miktar</label>
+                            <div class="col-4">
+                                <input class="form-control" name="Amount" id="Amount" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Raf Bilgisi</label>
+                            <div class="col-4">
+                                <input class="form-control" name="IdShelf" id="IdShelf" type="text">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Dolap Bilgisi</label>
+                            <div class="col-4">
+                                <input class="form-control" name="IdCabinet" id="IdCabinet" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-dark" for="Name">Kritik Miktar</label>
+                            <div class="col-4">
+                                <input class="form-control" name="CriticalAmount" id="CriticalAmount" type="text">
+                            </div>
+                        </div>
+                        <button class="btn btn-danger" type="submit">Ekle</button>
+                        <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                        <br />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

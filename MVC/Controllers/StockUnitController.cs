@@ -136,20 +136,6 @@ namespace MVC.Controllers
             return PartialView("_UpdateStockUnitPartialView");
         }
 
-        //[HttpPost]
-        //public IActionResult Update(StockUnit stockUnit)
-        //{
-        //    var result = _stockUnitService.Update(stockUnit);
-        //    if (result.Success)
-        //    {
-        //        return RedirectToAction("GetAll", new { message = result.Message });
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(result);
-        //    }
-        //}
-
         [HttpPost]
         public IActionResult Update(StockUnit model)
         {
@@ -160,7 +146,7 @@ namespace MVC.Controllers
             }
             else
             {
-                return View("_UpdateStockUnitPartialView", model); // Return to the edit form with validation errors
+                return View("_UpdateStockUnitPartialView", model);
             }
         }
             //[HttpGet]

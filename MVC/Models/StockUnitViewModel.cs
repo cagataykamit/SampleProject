@@ -26,6 +26,8 @@ namespace MVC.Models
         public int? IdCurrencyTypeSale { get; set; }
 
         public decimal? Weight { get; set; }
+        public int IdShelf { get; set; }
+        public int IdCabinet { get; set; }
 
         public List<SelectListItem> StockTypeItems { get; set; }
         public List<SelectListItem> QuantityUnitItems { get; set; }

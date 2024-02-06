@@ -28,32 +28,16 @@ namespace Business.Concrete
         public IDataResult<List<StockListWithStockTypeAndStockUnitDto>> GetAll()
         {
 
-            return new SuccessDataResult<List<StockListWithStockTypeAndStockUnitDto>>(_stockListDal.GetAllForTable(), Messages.StockListTypeListed);
+            return new SuccessDataResult<List<StockListWithStockTypeAndStockUnitDto>>(_stockListDal.GetAllForTable(), Messages.StockListListed);
         }
 
         [ValidationAspect(typeof(StockListValidator))]
         public IResult Add(StockList stockList)
         {
-            //business codes
-            //IResult result = BusinessRules.Run(CheckIfStockListNameExist(StockList.Name));
-
-            //if (result != null)
-            //{
-            //    return result;
-            //}
             _stockListDal.Add(stockList);
 
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.StockListAdded);
         }
-        //private IResult CheckIfStockListNameExist(string StockListName)
-        //{
-        //    var result = _StockListDal.GetAll(p => p.Name == StockListName).Any();
-        //    if (result)
-        //    {
-        //        return new ErrorResult(Messages.ProductNameAlreadyExist);
-        //    }
-        //    return new SuccessResult();
-        //}
 
         public IResult Delete(StockList stockList)
         {
@@ -74,6 +58,8 @@ namespace Business.Concrete
             objStockList.IdShelf = stockList.IdShelf;
             objStockList.IdCabinet = stockList.IdCabinet;
             objStockList.CriticalAmount = stockList.CriticalAmount;
+            objStockList.IdStockClass=stockList.IdStockClass;
+            objStockList.IdStockType = stockList.IdStockType;
             objStockList.Deleted = stockList.Deleted;
    
             _stockListDal.Update(stockList);

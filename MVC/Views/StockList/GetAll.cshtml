@@ -7,12 +7,12 @@
 
 
     <h4 class="py-3 mb-4">
-        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Birimleri
+        <span class="text-muted fw-light">Stok Yönetimi /</span> Stok Listesi
     </h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
-        <h5 class="card-header">Stok Birimleri Listesi</h5>
+        <h5 class="card-header">Stok Listesi</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-bordered" id="articlesTable" width="100%" cellspacing="0">
                 <thead>
@@ -45,101 +45,27 @@
                             <td></td>
                             <td>@item.CriticalAmount</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" onclick="updateItem(@item.Id)">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                                        data-target="#updateStockListModal-@item.Id" data-url="@Url.Action("Update","StockList", new { id = item.Id })">
                                     <span class="bi bi-pencil-square"></span>
                                 </button>
+                                @await Html.PartialAsync("_UpdateStockListPartialView",Model)
+
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            <form asp-action="Add" asp-controller="StockUnit" method="post" class="mt-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStockListModal">Ekle</button>
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">Ekle</button>
-                <div class="modal" id="Modal1">
-                    <div class="modal-dialog modal-lg modal-start">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title">Stok Birimi Ekle</h2>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label asp-for="Model.IdStockClass">Stok Sınıfı</label>
-                                <select name="IdStockClass" asp-items="Model.StockClassItems" class="form-control">
-                                    <option value="">-- Select --</option>
-                                </select>
-                                <span asp-validation-for="Model.IdStockClass" class="text-danger"></span>
-                            </div>
-
-                            <br />
-
-                            <div class="form-group">
-                                <label asp-for="Model.IdStockType">Stok Türü</label>
-                                <select name="IdStockType" asp-items="Model.StockTypeItems" class="form-control">
-                                    <option value="">-- Select --</option>
-                                </select>
-                                <span asp-validation-for="Model.IdStockType" class="text-danger"></span>
-                            </div>
-
-                            <br />
-
-                            <div class="form-group">
-                                <label asp-for="Model.IdStockUnit">Stok Birim Adı</label>
-                                <select name="IdStockUnit" asp-items="Model.StockUnitItems" class="form-control">
-                                    <option value="">-- Select --</option>
-                                </select>
-                                <span asp-validation-for="Model.IdStockUnit" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="text-dark" for="Name">Miktar</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="Description" id="Description" type="text">
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <div class="form-group">
-                                <label class="text-dark" for="Name">Raf Bilgisi</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="PurchasePrice" id="PurchasePrice" type="text">
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <div class="form-group">
-                                <label class="text-dark" for="Name">Dolap Bilgisi</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="SalePrice" id="SalePrice" type="text">
-                                </div>
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <label class="text-dark" for="Name">Kritik Miktar</label>
-                                <div class="col-4">
-                                    <input class="form-control" name="Weight" id="Weight" type="text">
-                                </div>
-                            </div>
-
-                            <br />
-
-                            <button class="btn btn-success" type="submit">+ Stok Ekle</button>
-                            <button class="btn btn-light" type="button" data-dismiss="modal">İptal</button>
-                            <br />
-
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
     <!--/ Basic Bootstrap Table -->
 </div>
 
 
+@* Add Modalını açmak için *@
+@await Html.PartialAsync("_StockListPartialView",@Model)
 
 @section Scripts{
     <script src="~/js/stockTypeIndex.js" type="application/ecmascript"></script>

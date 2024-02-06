@@ -25,12 +25,12 @@ namespace Business.Constants
         public static string StockListAdded = "Stok başarıyla eklendi";
         public static string StockListDeleted = "Stok başarıyla silindi";
         public static string StockListUpdated = "Stok başarıyla güncellendi";
-        public static string StockListTypeListed = "Stok operasyonları listelendi.";
+        public static string StockListListed = "Stok listesi listelendi.";
 
-        public static string QuantityUnitAdded = "Stok başarıyla eklendi";
-        public static string QuantityUnitDeleted = "Stok başarıyla silindi";
-        public static string QuantityUnitUpdated = "Stok başarıyla güncellendi";
-        public static string QuantityUnitListed = "Stok operasyonları listelendi.";
+        public static string QuantityUnitAdded = "Miktar birimi başarıyla eklendi";
+        public static string QuantityUnitDeleted = "Miktar birimi başarıyla silindi";
+        public static string QuantityUnitUpdated = "Miktar birimi başarıyla güncellendi";
+        public static string QuantityUnitListed = "Miktar birimi operasyonları listelendi.";
 
         public static string CurrencyTypeAdded = "Para birimi başarıyla eklendi";
         public static string CurrencyTypeDeleted = "Para birimi başarıyla silindi";

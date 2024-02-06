@@ -25,7 +25,7 @@ namespace MVC.Controllers
             _stockClassService = stockClassService;
         }
 
-        [HttpGet("StockList/getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var viewModel = new StockListViewModel();
@@ -69,31 +69,14 @@ namespace MVC.Controllers
 
         }
 
-        [HttpGet("StockList/getallstocksbystocktype")]
-        public IActionResult GetAll(int idStockType)
-        {
 
-            IDataResult<List<StockSelectListDto>> result = _stockUnitService.GetAllStockUnitByStockType(idStockType);
-            if (result.Success)
-            {
-                //return Ok(result);
-                return View(result.Data);
-            }
-            else
-            {
-                return BadRequest(result);
-            }
-
-        }
-
-
-        [HttpGet("add")]
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public IActionResult Add(StockList StockList)
         {
             var result = _stockListService.Add(StockList);
@@ -107,16 +90,26 @@ namespace MVC.Controllers
             }
         }
 
-        //[HttpGet("getbyid")]
-        //public IActionResult GetById(int id)
-        //{
-        //    var result = _StockListService.GetById(id);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+        [HttpGet]
+        public IActionResult Update()
+        {
+
+            return PartialView("_UpdateStockListPartialView");
+        }
+
+        [HttpPost]
+        public IActionResult Update(StockList stockList)
+        {
+            var result = _stockListService.Update(stockList);
+            if (result.Success)
+            {
+                return RedirectToAction("GetAll", new { message = result.Message });
+            }
+            else
+            {
+                return PartialView("_UpdateStockListPartialView", stockList);
+            }
+        }
 
     }
 }

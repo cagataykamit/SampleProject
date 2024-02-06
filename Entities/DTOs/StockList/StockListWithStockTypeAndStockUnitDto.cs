@@ -13,6 +13,8 @@ namespace Entities.DTOs.StockList
         public int Id { get; set; }
 
         public int IdStockUnit { get; set; }
+        public int IdStockClass { get; set; }
+        public int IdStockType { get; set; }
         public string StockCode { get; set; }
         public string StockTypeName { get; set; }
         public string StockUnitDescription { get; set; }

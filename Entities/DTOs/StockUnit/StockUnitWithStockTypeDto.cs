@@ -6,6 +6,8 @@ namespace Entities.DTOs.StockUnit
     {
         public int Id { get; set; }
 
+        public int IdStockType { get; set; }
+        public int IdStockClass { get; set; }
         public string? StockCode { get; set; }
 
         public int IdQuantityUnit { get; set; }
@@ -23,8 +25,6 @@ namespace Entities.DTOs.StockUnit
         public decimal? Weight { get; set; }
 
         public bool Deleted { get; set; }
-
-        public int IdStockType { get; set; }
 
         public string StockTypeName { get; set; }
         public string QuantityUnitName { get; set; }
