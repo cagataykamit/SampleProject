@@ -15,6 +15,7 @@ namespace Business.Abstract
         IDataResult<List<StockListDto>> GetAll();
         IResult Add(StockList stockList);
         IResult Update(StockList StockList);
+        IResult Delete(StockList StockList);
         IDataResult<List<StockListWithStockTypeAndStockUnitDto>> GetAllForTable();
     }
 }

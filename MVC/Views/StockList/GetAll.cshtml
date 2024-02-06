@@ -51,6 +51,10 @@
                                 </button>
                                 @await Html.PartialAsync("_UpdateStockListPartialView",Model)
 
+                                <a href="/StockList/Delete/@item.Id" class="btn btn-sm btn-danger" asp-for="Delete">
+                                    <span class="bi bi-trash"></span>
+                                </a>
+
                             </td>
                         </tr>
                     }

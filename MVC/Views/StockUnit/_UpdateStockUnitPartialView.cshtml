@@ -21,6 +21,7 @@
                                     <input class="form-control" asp-for="@item.StockCode" name="StockCode" />
                                 </div>
                             </div>
+                            <br />
                             <div class="form-group">
                                 <label asp-for="@item.IdStockType">Stok Türü</label>
                                 <select name="IdStockType" asp-for="@item.IdStockType" asp-items="@Model.StockTypeItems" class="form-control">
@@ -28,6 +29,7 @@
                                 </select>
                                 <span asp-validation-for="@item.IdStockType" class="text-danger"></span>
                             </div>
+                            <br />
                             <div class="form-group">
                                 <label asp-for="@item.IdQuantityUnit">Miktar Birimi</label>
                                 <select name="IdQuantityUnit" asp-for="@item.IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
@@ -35,6 +37,7 @@
                                 </select>
                                 <span asp-validation-for="@item.IdQuantityUnit" class="text-danger"></span>
                             </div>
+                            <br />
                             <div class="form-group">
                                 <label class="text-dark" for="Name">Açıklama</label>
                                 <div class="col-4">
@@ -78,8 +81,9 @@
                                     <input class="form-control" asp-for="@item.Weight" name="Weight" />
                                 </div>
                             </div>
-                            <button class="btn btn-danger" type="submit">Güncelle</button>
-                            <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                            <br />
+                            <button class="btn btn-success" type="submit">Güncelle</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">İptal</button>
                         </div>
                     </form>
                 </div>

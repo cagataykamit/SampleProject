@@ -25,6 +25,7 @@
                             </select>
                             <span asp-validation-for="IdStockType" class="text-danger"></span>
                         </div>
+                        <br />
                         <div class="form-group">
                             <label asp-for="IdQuantityUnit">Miktar Birimi</label>
                             <select name="IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
@@ -32,6 +33,7 @@
                             </select>
                             <span asp-validation-for="IdQuantityUnit" class="text-danger"></span>
                         </div>
+                        <br />
                         <div class="form-group">
                             <label class="text-dark" for="Name">Açıklama</label>
                             <div class="col-4">
@@ -75,8 +77,9 @@
                                 <input class="form-control" name="Weight" id="Weight" type="text">
                             </div>
                         </div>
-                        <button class="btn btn-danger" type="submit">Ekle</button>
-                        <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                        <br />
+                        <button class="btn btn-success" type="submit">Ekle</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">İptal</button>
                         <br />
                     </div>
                 </form>

@@ -104,5 +104,19 @@ namespace MVC.Controllers
                 return PartialView("_UpdateStockListPartialView", stockList);
             }
         }
+
+        [HttpGet]
+        public IActionResult Delete(StockList stockList)
+        {
+            var result = _stockListService.Delete(stockList);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
     }
 }

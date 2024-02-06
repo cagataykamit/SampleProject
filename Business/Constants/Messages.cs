@@ -22,9 +22,9 @@ namespace Business.Constants
         public static string StockUnitUpdated = "Stok başarıyla güncellendi";
 
 
-        public static string StockListAdded = "Stok başarıyla eklendi";
-        public static string StockListDeleted = "Stok başarıyla silindi";
-        public static string StockListUpdated = "Stok başarıyla güncellendi";
+        public static string StockListAdded = "Stok listesi başarıyla eklendi";
+        public static string StockListDeleted = "Stok listesi başarıyla silindi";
+        public static string StockListUpdated = "Stok listesi başarıyla güncellendi";
         public static string StockListListed = "Stok listesi listelendi.";
 
         public static string QuantityUnitAdded = "Miktar birimi başarıyla eklendi";
@@ -44,12 +44,11 @@ namespace Business.Constants
         public static string StockClassListed = "Stok sınıfı operasyonları listelendi.";
 
 
-        public static string ProductNameInvalid = "Ürün ismi geçersiz";
+       
         public static string MaintenanceTime = "Sistem bakımda";
-        public static string ProductListed = "Ürünler listelendi.";
-        public static string ProductCountOfCategoryError = "Bir kategoride en fazla 10 ürün olabilir";
-        public static string ProductNameAlreadyExist = "Bu isimde bir ürün zaten var";
-        public static string CategoryLimitExceded = "Kategori limiti aşıldığı için yeni ürün eklenemiyor";
+        public static string StockTypeNameAlreadyExist = "Aynı isimde stok listesi bulunmaktadır";
+        
+
         public static string StockUnitInStockListNotDelete = "Silmek istediğiniz bu stok birimi bir stok listesinde bulunuyor bu sebeple silme işlemi yapamazsınız.";
         
     }

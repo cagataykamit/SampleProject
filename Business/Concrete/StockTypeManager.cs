@@ -44,7 +44,7 @@ namespace Business.Concrete
             var result = _stockTypeDal.GetAll(p => p.Name == stockTypeName).Any();
             if (result)
             {
-                return new ErrorResult(Messages.ProductNameAlreadyExist);
+                return new ErrorResult(Messages.StockTypeNameAlreadyExist);
             }
             return new SuccessResult();
         }
