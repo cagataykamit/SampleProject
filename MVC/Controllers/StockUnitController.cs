@@ -136,59 +136,73 @@ namespace MVC.Controllers
             return PartialView("_UpdateStockUnitPartialView");
         }
 
+        //[HttpPost]
+        //public IActionResult Update(StockUnit stockUnit)
+        //{
+        //    var result = _stockUnitService.Update(stockUnit);
+        //    if (result.Success)
+        //    {
+        //        return RedirectToAction("GetAll", new { message = result.Message });
+        //    }
+        //    else
+        //    {
+        //        return BadRequest(result);
+        //    }
+        //}
+
         [HttpPost]
-        public IActionResult Update(StockUnit stockUnit)
+        public IActionResult Update(StockUnit model)
         {
-            var result = _stockUnitService.Update(stockUnit);
+            var result = _stockUnitService.Update(model);
             if (result.Success)
             {
                 return RedirectToAction("GetAll", new { message = result.Message });
             }
             else
             {
-                return BadRequest(result);
+                return View("_UpdateStockUnitPartialView", model); // Return to the edit form with validation errors
             }
         }
-        //[HttpGet]
-        //public IActionResult AddStockType()
-        //{
-        //    // Veritabanından stok tiplerini alın
-        //    List<StockType> stockTypes = _stockTypeService.GetAll();
+            //[HttpGet]
+            //public IActionResult AddStockType()
+            //{
+            //    // Veritabanından stok tiplerini alın
+            //    List<StockType> stockTypes = _stockTypeService.GetAll();
 
-        //    // SelectListItem listesini oluşturun
-        //    List<SelectListItem> stockTypeList = stockTypes
-        //        .Select(x => new SelectListItem
-        //        {
-        //            Text = x.Name,
-        //            Value = x.st.ToString() // Varsa, StockType'un bir sayısal değeri varsa kullanın
-        //        })
-        //        .ToList();
+            //    // SelectListItem listesini oluşturun
+            //    List<SelectListItem> stockTypeList = stockTypes
+            //        .Select(x => new SelectListItem
+            //        {
+            //            Text = x.Name,
+            //            Value = x.st.ToString() // Varsa, StockType'un bir sayısal değeri varsa kullanın
+            //        })
+            //        .ToList();
 
-        //    // ViewModel'i oluşturun ve SelectListItem listesini atayın
-        //    var viewModel = new StockUnitViewModel
-        //    {
-        //        StockTypeList = stockTypeList
-        //    };
+            //    // ViewModel'i oluşturun ve SelectListItem listesini atayın
+            //    var viewModel = new StockUnitViewModel
+            //    {
+            //        StockTypeList = stockTypeList
+            //    };
 
-        //    return View(viewModel);
-        //}
+            //    return View(viewModel);
+            //}
 
-        //[HttpPost]
-        //public IActionResult AddStockType(StockUnit stockUnit)
-        //{
+            //[HttpPost]
+            //public IActionResult AddStockType(StockUnit stockUnit)
+            //{
 
-        //}
+            //}
 
-        //[HttpGet("getbyid")]
-        //public IActionResult GetById(int id)
-        //{
-        //    var result = _StockService.GetById(id);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+            //[HttpGet("getbyid")]
+            //public IActionResult GetById(int id)
+            //{
+            //    var result = _StockService.GetById(id);
+            //    if (result.Success)
+            //    {
+            //        return Ok(result);
+            //    }
+            //    return BadRequest(result);
+            //}
 
-    }
+        }
 }

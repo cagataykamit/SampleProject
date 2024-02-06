@@ -37,9 +37,11 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from s in context.StockUnits
 
-                             join st in context.StockTypes on s.IdStockType equals st.Id
+                             join st in context.StockTypes on s.IdStockType equals st.Id into stGroup
+                             from st in stGroup.DefaultIfEmpty()
 
-                             join qt in context.QuantityUnits on s.IdQuantityUnit equals qt.Id
+                             join qt in context.QuantityUnits on s.IdQuantityUnit equals qt.Id into qtGroup
+                             from qt in qtGroup.DefaultIfEmpty()
                  
                              join cts in context.CurrencyTypes on s.IdCurrencyTypeSale equals cts.Id into ctsGroup
                              from cts in ctsGroup.DefaultIfEmpty()
@@ -61,7 +63,10 @@ namespace DataAccess.Concrete.EntityFramework
                                  CurrencyTypePurchaseName = ctp.Name,
                                  CurrencyTypePurchaseSymbol = ctp.Symbol,
                                  CurrencyTypeSaleSymbol = cts.Symbol,
-                                 CurrencyTypeSaleName = cts.Name,                               
+                                 CurrencyTypeSaleName = cts.Name, 
+                                 IdStockType = st.Id,
+                                 IdCurrencyTypePurchase = ctp.Id,
+                                 IdCurrencyTypeSale = cts.Id
                              };
                 return result.ToList();
             }

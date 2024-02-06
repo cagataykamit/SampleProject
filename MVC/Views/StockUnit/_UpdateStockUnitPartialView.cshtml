@@ -1,0 +1,90 @@
+﻿@model MVC.Models.StockUnitViewModel
+
+@foreach (var item in Model.ListStockUnit)
+{
+    <div class="modal fade" id="updateStockUnitModal-@item.Id" aria-labelledby="updateStockUnitLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="updateStockUnitModalLabel">Stok Birimi Ekle</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="Update" asp-controller="StockUnit" method="post" class="mt-4">
+                        <div class="modal-body">
+                            <input class="form-control" asp-for="@item.Id" name="Id" type="hidden" />
+                            <!-- Diğer form alanları buraya gelecek -->
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Stok Birim Kodu</label>
+                                <div class="col-4">
+                                    <input class="form-control" asp-for="@item.StockCode" name="StockCode" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@item.IdStockType">Stok Türü</label>
+                                <select name="IdStockType" asp-for="@item.IdStockType" asp-items="@Model.StockTypeItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@item.IdStockType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@item.IdQuantityUnit">Miktar Birimi</label>
+                                <select name="IdQuantityUnit" asp-for="@item.IdQuantityUnit" asp-items="Model.QuantityUnitItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@item.IdQuantityUnit" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Açıklama</label>
+                                <div class="col-4">
+                                    <input class="form-control" asp-for="@item.Description" name="Description" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Alış Fiyatı</label>
+                                <div class="col-4">
+                                    <input class="form-control" asp-for="@item.PurchasePrice" name="PurchasePrice" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label asp-for="@item.IdCurrencyTypePurchase">Alış Fiyatı Para Birimi</label>
+                                <select name="IdCurrencyTypePurchase" asp-for="@item.IdCurrencyTypePurchase" asp-items="Model.CurrencyTypePurchaseItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@item.IdCurrencyTypePurchase" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Satış Fiyatı</label>
+                                <div class="col-4">
+                                    <input class="form-control" asp-for="@item.SalePrice" name="SalePrice" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label asp-for="@item.IdCurrencyTypeSale">Satış Fiyatı Para Birimi</label>
+                                <select name="IdCurrencyTypeSale" asp-for="@item.IdCurrencyTypeSale" asp-items="Model.CurrencyTypeSaleItems" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                                <span asp-validation-for="@item.IdCurrencyTypeSale" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label class="text-dark" for="Name">Kağıt Ağırlığı</label>
+                                <div class="col-4">
+                                    <input class="form-control" asp-for="@item.Weight" name="Weight" />
+                                </div>
+                            </div>
+                            <button class="btn btn-danger" type="submit">Güncelle</button>
+                            <button class="btn btn-dark" type="button" data-dismiss="modal">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
