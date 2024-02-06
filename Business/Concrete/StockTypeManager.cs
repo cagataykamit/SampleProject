@@ -5,13 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Business.Concrete
@@ -59,7 +53,7 @@ namespace Business.Concrete
         {
 
             var objStockType = _stockTypeDal.Get(x => x.Id == stockType.Id);
- 
+
             _stockTypeDal.Delete(stockType);
             return new SuccessResult(Messages.StockTypeDeleted);
         }
@@ -67,7 +61,7 @@ namespace Business.Concrete
         public IResult Update(StockType stockType)
         {
 
-            var objStockType = _stockTypeDal.Get(x=>x.Id == stockType.Id);
+            var objStockType = _stockTypeDal.Get(x => x.Id == stockType.Id);
 
             objStockType.Name = stockType.Name;
             objStockType.IsActive = stockType.IsActive;
@@ -80,7 +74,5 @@ namespace Business.Concrete
         {
             return _stockTypeDal.GetAllStockTypesSelectList();
         }
-
-      
     }
 }

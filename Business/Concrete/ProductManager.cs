@@ -27,7 +27,7 @@ namespace Business.Concrete
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
-           
+
         }
 
 
@@ -36,7 +36,7 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             //business codes
-            
+
 
             IResult result = BusinessRules.Run(CheckIfProductNameExist(product.ProductName)
                                           , CheckIfProductCountOfCategoryCorrect(product.CategoryId)
@@ -81,7 +81,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
-        
+
 
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {

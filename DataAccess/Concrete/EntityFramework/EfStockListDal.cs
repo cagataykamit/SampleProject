@@ -33,14 +33,13 @@ namespace DataAccess.Concrete.EntityFramework
                                  StockUnitDescription = s.Description,
                                  ShelfCode = sh.Code,
                                  CabinetCode = c.Code,
+                                 IdShelf = so.IdShelf,
+                                 IdCabinet = so.IdCabinet,
                                  CriticalAmount = so.CriticalAmount,
                                  StockTypeName = st.Name,
                                  IdStockClass = sc.Id,
                                  IdStockType = st.Id,
                                  IdStockUnit = s.Id,
-
-
-                                 
                              };
                 return result.ToList();
             }

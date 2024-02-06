@@ -13,7 +13,10 @@ namespace Business.ValidationRules.FluentValidation
         public StockUnitValidator()
         {
             RuleFor(s => s.SalePrice).GreaterThan(10);
-           
+            RuleFor(s => s.IdStockType).NotEmpty().WithMessage("Lütfen stok türünü giriniz!");
+            RuleFor(s => s.IdQuantityUnit).NotEmpty().WithMessage("Lütfen miktar birimini giriniz!");
+
+
         }
 
     }

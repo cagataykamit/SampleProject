@@ -12,8 +12,14 @@ namespace Business.ValidationRules.FluentValidation
     {
         public StockListValidator()
         {
-            //RuleFor(p => p.SalePrice).Min(2);
-            //RuleFor(p => p.Name).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalıdır.");
+            RuleFor(s => s.IdStockClass).NotEmpty().WithMessage("Lütfen stok sınıfını giriniz!");
+            RuleFor(s => s.IdStockType).NotEmpty().WithMessage("Lütfen stok türünü giriniz!");
+            RuleFor(s => s.IdStockUnit).NotEmpty().WithMessage("Lütfen stok birimini giriniz!");
+            RuleFor(s => s.Amount).NotEmpty().WithMessage("Lütfen miktarı giriniz!");
+            RuleFor(s => s.IdShelf).NotEmpty().WithMessage("Lütfen raf bilgisini giriniz!");
+            RuleFor(s => s.IdCabinet).NotEmpty().WithMessage("Lütfen dolap bilgisini giriniz!");
+            RuleFor(s => s.CriticalAmount).NotEmpty().WithMessage("Lütfen kiritik miktarı giriniz!");
+
         }
 
     }

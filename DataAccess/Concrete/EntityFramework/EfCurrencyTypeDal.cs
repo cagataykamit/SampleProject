@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCurrencyTypeDal : EfEntityRepositoryBase<CurrencyType, StockContext>, ICurrencyTypeDal
     {
-       
+
         public List<SelectListItem> GetAllCurrencyTypeSelectList()
         {
             using (StockContext context = new StockContext())

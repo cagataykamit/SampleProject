@@ -2,18 +2,10 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs.StockList;
-using Entities.DTOs.StockUnit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -43,26 +35,25 @@ namespace Business.Concrete
         {
 
             var objStockList = _stockListDal.Get(x => x.Id == stockList.Id);
- 
+
             _stockListDal.Delete(stockList);
             return new SuccessResult(Messages.StockListDeleted);
         }
 
         public IResult Update(StockList stockList)
         {
-
-            var objStockList = _stockListDal.Get(x=>x.Id == stockList.Id);
+            var objStockList = _stockListDal.Get(x => x.Id == stockList.Id);
 
             objStockList.IdStockUnit = stockList.IdStockUnit;
             objStockList.Amount = stockList.Amount;
             objStockList.IdShelf = stockList.IdShelf;
             objStockList.IdCabinet = stockList.IdCabinet;
             objStockList.CriticalAmount = stockList.CriticalAmount;
-            objStockList.IdStockClass=stockList.IdStockClass;
+            objStockList.IdStockClass = stockList.IdStockClass;
             objStockList.IdStockType = stockList.IdStockType;
             objStockList.Deleted = stockList.Deleted;
-   
-            _stockListDal.Update(stockList);
+
+            _stockListDal.Update(objStockList); // Burada objStockList'i güncellemelisiniz, stockList değil.
             return new SuccessResult(Messages.StockListUpdated);
         }
 

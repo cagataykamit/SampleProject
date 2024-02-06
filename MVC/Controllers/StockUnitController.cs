@@ -16,15 +16,15 @@ namespace MVC.Controllers
         IStockTypeService _stockTypeService;
         IQuantityUnitService _quantityUnitService;
         ICurrencyTypeService _currencyTypeService;
-        
 
-        public StockUnitController(IStockUnitService stockUnitService,IStockTypeService stockTypeService,IQuantityUnitService quantityUnitService, ICurrencyTypeService currencyTypeService)
+
+        public StockUnitController(IStockUnitService stockUnitService, IStockTypeService stockTypeService, IQuantityUnitService quantityUnitService, ICurrencyTypeService currencyTypeService)
         {
             _stockUnitService = stockUnitService;
             _stockTypeService = stockTypeService;
             _quantityUnitService = quantityUnitService;
             _currencyTypeService = currencyTypeService;
-            
+
         }
 
         [HttpGet]
@@ -42,13 +42,10 @@ namespace MVC.Controllers
                 viewModel.CurrencyTypePurchaseItems = new List<SelectListItem>();
                 viewModel.CurrencyTypeSaleItems = new List<SelectListItem>();
 
-
                 var stockTypeItems = _stockTypeService.GetAllStockTypesSelectList();
                 var quantityUnitItems = _quantityUnitService.GetAllQuantityUnitSelectList();
                 var currencyTypePurchaseItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
                 var currencyTypeSaleItems = _currencyTypeService.GetAllCurrencyTypeSelectList();
-                
-
 
                 foreach (var item in stockTypeItems)
                 {
@@ -73,34 +70,13 @@ namespace MVC.Controllers
             {
                 return BadRequest(result);
             }
-
         }
-
-
-        //[HttpGet]
-        //public IActionResult GetAllWithStockTypeNonDeleted()
-        //{
-
-        //    var result = _stockUnitService.GetAll();
-        //    if (result.Success)
-        //    {
-        //        //return Ok(result);
-        //        return View(result.Data);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(result);
-        //    }
-
-        //}
-
 
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Add(StockUnit stockUnit)
         {
@@ -132,7 +108,7 @@ namespace MVC.Controllers
         [HttpGet]
         public IActionResult Update()
         {
-            
+
             return PartialView("_UpdateStockUnitPartialView");
         }
 
@@ -149,46 +125,6 @@ namespace MVC.Controllers
                 return View("_UpdateStockUnitPartialView", model);
             }
         }
-            //[HttpGet]
-            //public IActionResult AddStockType()
-            //{
-            //    // Veritabanından stok tiplerini alın
-            //    List<StockType> stockTypes = _stockTypeService.GetAll();
 
-            //    // SelectListItem listesini oluşturun
-            //    List<SelectListItem> stockTypeList = stockTypes
-            //        .Select(x => new SelectListItem
-            //        {
-            //            Text = x.Name,
-            //            Value = x.st.ToString() // Varsa, StockType'un bir sayısal değeri varsa kullanın
-            //        })
-            //        .ToList();
-
-            //    // ViewModel'i oluşturun ve SelectListItem listesini atayın
-            //    var viewModel = new StockUnitViewModel
-            //    {
-            //        StockTypeList = stockTypeList
-            //    };
-
-            //    return View(viewModel);
-            //}
-
-            //[HttpPost]
-            //public IActionResult AddStockType(StockUnit stockUnit)
-            //{
-
-            //}
-
-            //[HttpGet("getbyid")]
-            //public IActionResult GetById(int id)
-            //{
-            //    var result = _StockService.GetById(id);
-            //    if (result.Success)
-            //    {
-            //        return Ok(result);
-            //    }
-            //    return BadRequest(result);
-            //}
-
-        }
+    }
 }

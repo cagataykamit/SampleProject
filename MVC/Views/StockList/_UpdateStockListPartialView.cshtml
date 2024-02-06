@@ -11,7 +11,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
+                    
                     <form asp-action="Update" asp-controller="StockList" method="post" class="mt-4">
                         <div class="modal-body">
                             <input class="form-control" asp-for="@item.Id" name="Id" type="hidden" />

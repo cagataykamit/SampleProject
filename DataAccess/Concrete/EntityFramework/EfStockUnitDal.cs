@@ -42,7 +42,7 @@ namespace DataAccess.Concrete.EntityFramework
 
                              join qt in context.QuantityUnits on s.IdQuantityUnit equals qt.Id into qtGroup
                              from qt in qtGroup.DefaultIfEmpty()
-                 
+
                              join cts in context.CurrencyTypes on s.IdCurrencyTypeSale equals cts.Id into ctsGroup
                              from cts in ctsGroup.DefaultIfEmpty()
 
@@ -52,7 +52,7 @@ namespace DataAccess.Concrete.EntityFramework
                              select new StockUnitWithStockTypeDto
                              {
                                  Id = s.Id,
-                                 StockCode = s.StockCode,                             
+                                 StockCode = s.StockCode,
                                  Description = s.Description,
                                  PurchasePrice = s.PurchasePrice,
                                  SalePrice = s.SalePrice,
@@ -63,7 +63,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  CurrencyTypePurchaseName = ctp.Name,
                                  CurrencyTypePurchaseSymbol = ctp.Symbol,
                                  CurrencyTypeSaleSymbol = cts.Symbol,
-                                 CurrencyTypeSaleName = cts.Name, 
+                                 CurrencyTypeSaleName = cts.Name,
                                  IdStockType = st.Id,
                                  IdCurrencyTypePurchase = ctp.Id,
                                  IdCurrencyTypeSale = cts.Id

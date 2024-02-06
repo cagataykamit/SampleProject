@@ -19,11 +19,12 @@ namespace DataAccess.Concrete.EntityFramework
             using (NortwindContext context = new NortwindContext())
             {
                 var result = from p in context.Products
-                             select new ProductDetailDto { 
+                             select new ProductDetailDto
+                             {
                                  ProductId = p.ProductId,
                                  ProductName = p.ProductName,
                                  UnitsInStock = p.UnitsInStock
-                                
+
                              };
                 return result.ToList();
             }

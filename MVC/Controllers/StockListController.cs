@@ -37,14 +37,10 @@ namespace MVC.Controllers
                 viewModel.StockTypeItems = new List<SelectListItem>();
                 viewModel.StockClassItems = new List<SelectListItem>();
                 viewModel.StockUnitItems = new List<SelectListItem>();
-                
-
 
                 var stockTypeItems = _stockTypeService.GetAllStockTypesSelectList();
                 var stockUnitItems = _stockUnitService.GetAllStockUnitSelectList();
                 var stockClassItems = _stockClassService.GetAllStockClassSelectList();
-
-
 
                 foreach (var item in stockTypeItems)
                 {
@@ -58,7 +54,7 @@ namespace MVC.Controllers
                 {
                     viewModel.StockClassItems.Add(new SelectListItem { Value = item.Value, Text = item.Text });
                 }
-               
+
                 //return Ok(result);
                 return View(viewModel);
             }
@@ -66,9 +62,7 @@ namespace MVC.Controllers
             {
                 return BadRequest(result);
             }
-
         }
-
 
         [HttpGet]
         public IActionResult Add()
@@ -110,6 +104,5 @@ namespace MVC.Controllers
                 return PartialView("_UpdateStockListPartialView", stockList);
             }
         }
-
     }
 }

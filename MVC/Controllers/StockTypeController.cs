@@ -11,13 +11,10 @@ namespace MVC.Controllers
     public class StockTypeController : Controller
     {
         IStockTypeService _stockTypeService;
-
-
         public StockTypeController(IStockTypeService stockTypeService)
         {
             _stockTypeService = stockTypeService;
         }
-
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -34,15 +31,12 @@ namespace MVC.Controllers
             {
                 return BadRequest(result);
             }
-
         }
-
         [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Add(StockType RequestModel)
         {
@@ -56,7 +50,6 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
-
         [HttpGet]
         public IActionResult Update()
         {
@@ -77,7 +70,6 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
-
         [HttpGet]
         public IActionResult Delete(StockType stockType)
         {
@@ -91,16 +83,5 @@ namespace MVC.Controllers
                 return BadRequest(result);
             }
         }
-        //[HttpGet("getbyid")]
-        //public IActionResult GetById(int id)
-        //{
-        //    var result = _stockTypeService.GetById(id);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
-
     }
 }

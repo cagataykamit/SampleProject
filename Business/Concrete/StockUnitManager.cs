@@ -7,7 +7,6 @@ using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using Entities.DTOs.StockUnit;
@@ -63,13 +62,14 @@ namespace Business.Concrete
             objStock.SalePrice = stockUnit.SalePrice;
             objStock.PurchasePrice = stockUnit.PurchasePrice;
             objStock.IdCurrencyTypePurchase = stockUnit.IdCurrencyTypePurchase;
+            objStock.IdQuantityUnit = stockUnit.IdQuantityUnit;
             objStock.StockCode = stockUnit.StockCode;
             objStock.Description = stockUnit.Description;
             objStock.IdCurrencyTypePurchase = stockUnit.IdCurrencyTypePurchase;
             objStock.IdCurrencyTypeSale = stockUnit.IdCurrencyTypeSale;
             objStock.IdStockType = stockUnit.IdStockType;
             objStock.Weight = stockUnit.Weight;
-            _stockUnitDal.Update(stockUnit);
+            _stockUnitDal.Update(objStock);
             return new SuccessResult(Messages.StockUnitUpdated);
         }
 
@@ -82,7 +82,6 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<StockUnitWithStockTypeDto>>(_stockUnitDal.GetAllWithStockType(), Messages.StockTypeListed);
         }
-
         public List<SelectListItem> GetAllStockUnitSelectList()
         {
             return _stockUnitDal.GetAllStockUnitSelectList();
